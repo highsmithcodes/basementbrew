@@ -13,7 +13,7 @@ const Dashboard = () => {
     return (
         <>
             <Header/>
-            <h1>DashBoard</h1>
+            <h1>Dashboard</h1>
             <Link to="/logout">Logout</Link>
             <div className='body'>
                 <CreatePost />
