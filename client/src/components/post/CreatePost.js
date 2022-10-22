@@ -50,7 +50,7 @@ const CreatePost = () => {
                     value={title}
                     onChange={(e) => setAuthor(e.target.value)}
                 />
-                {!isPending && <button>Add Blog</button>}
+                {!isPending && <button>Add Blog Post</button>}
                 {isPending && <button disabled>Adding Blog</button>}
             </form>
         </>
