@@ -43,13 +43,6 @@ const CreatePost = () => {
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-                <label>Blog author:</label>
-                <input 
-                    type="text"
-                    required
-                    value={title}
-                    onChange={(e) => setAuthor(e.target.value)}
-                />
                 {!isPending && <button>Add Blog Post</button>}
                 {isPending && <button disabled>Adding Blog</button>}
             </form>
