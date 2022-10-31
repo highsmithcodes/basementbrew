@@ -5,12 +5,14 @@ import axios from 'axios'
 const SignUp = () => {
 
     const [ email, setEmail ] = useState('')
+    const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
 
     const onSubmit = e => {
         e.preventDefault()
-        createUser({email, password })
+        createUser({email, username, password })
         setEmail('')
+        setUsername('')
         setPassword('')
     }
 
@@ -32,6 +34,9 @@ const SignUp = () => {
                 <form onSubmit={ onSubmit }>
                     <div className="mt-2">
                         <input type="email" placeholder="Enter Email" value={ email } onChange={ e => setEmail(e.target.value) } required />
+                    </div>
+                    <div className="mt-2">
+                        <input type="username" placeholder="Enter Username" value={ username } onChange={ e => setUsername(e.target.value) } required />
                     </div>
                     <div className="mt-2">
                         <input type="password" placeholder="Enter Password" value={ password } onChange={ e => setPassword(e.target.value) } required />

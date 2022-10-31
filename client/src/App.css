@@ -2,8 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  background-color: tan;
+  background-color: forestgreen;
 }
 .header-container h1 {
   align-items: center;
@@ -13,5 +14,5 @@
 }
 .header-container .header-nav {
   flex: 0 0 auto;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }

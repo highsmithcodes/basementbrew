@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import Header from './header/Header'
-import CreatePost from './post/CreatePost'
+import AddPost from './post/AddPost'
 
 const Dashboard = () => {
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
             <h1>Dashboard</h1>
             <Link to="/logout">Logout</Link>
             <div className='body'>
-                <CreatePost />
+                <AddPost />
             </div>
         </>
     )

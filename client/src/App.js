@@ -6,6 +6,8 @@ import LogIn from './components/LogIn'
 import Dashboard from './components/Dashboard'
 import LogOut from './components/LogOut'
 import './App.css'
+import AddPost from './components/post/AddPost'
+import Posts from './components/post/Posts'
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Route path="/login" component={ LogIn } />
         <Route path="/dashboard" component={ Dashboard } />
         <Route path="/logout" component={ LogOut } />
+        <Route path="/addpost" component={ AddPost } />
+        <Route path='/posts' component={Posts} />
       </Switch>
     </Router>
   )

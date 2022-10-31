@@ -10,7 +10,9 @@ app.use(express.json())
 
 app.use('/signup', require('./routes/signUp'))
 
-app.use('/login', require('./routes/logIn'))
+app.use('/login', require('./routes/login'))
+
+app.post('/post/posttodb', require('./routes/post'))
 
 const PORT = process.env.PORT || 1000
 
