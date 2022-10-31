@@ -1,18 +1,24 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useContext, createContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
-// import Context from './utils/context';
+
+const UserContext = createContext();
+
+const Header = (children) => {
 
 
-const Header = () => {
+
     return (
         <div className='header-container'>
             <h1>Logo</h1>
             <div className='header-nav'>
-                <div></div>
+     
                 <Link to="/logout">Logout</Link>
             </div>
         </div>
     )
 }
+
+
 
 export default Header

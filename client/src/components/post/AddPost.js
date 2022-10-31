@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import axios from 'axios'
 
+
 const AddPost = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('');
 
     const onSubmit = e => {
         e.preventDefault()
-        createPost({title, body, author})
+        createPost({title, body, id, username})
         setTitle('')
         setBody('')
-        setAuthor('')
     }
 
     const createPost = async (post) => {
