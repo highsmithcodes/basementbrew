@@ -6,6 +6,7 @@ import AddPost from './post/AddPost'
 const Dashboard = () => {
 
     const token = localStorage.getItem('token')
+
     if(!token){
         return <Redirect to="/login" />
     }
@@ -14,7 +15,6 @@ const Dashboard = () => {
         <>
             <Header/>
             <h1>Dashboard</h1>
-            <Link to="/logout">Logout</Link>
             <div className='body'>
                 <AddPost />
             </div>

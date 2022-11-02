@@ -1,17 +1,20 @@
-import { useState } from 'react';
-import axios from 'axios'
+import { useState, useContext } from 'react';
+import axios from 'axios';
 
 
-const AddPost = () => {
+const AddPost = (props) => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+    console.log('props from Profile.jsx :', props);
+
 
     const onSubmit = e => {
         e.preventDefault()
-        createPost({title, body, id, username})
+        createPost({title, body})
         setTitle('')
         setBody('')
+        id
     }
 
     const createPost = async (post) => {
