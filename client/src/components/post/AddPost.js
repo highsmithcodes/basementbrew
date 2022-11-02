@@ -1,20 +1,17 @@
-import { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const AddPost = (props) => {
+const AddPost = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    console.log('props from Profile.jsx :', props);
-
 
     const onSubmit = e => {
         e.preventDefault()
         createPost({title, body})
         setTitle('')
         setBody('')
-        id
     }
 
     const createPost = async (post) => {
@@ -31,6 +28,7 @@ const AddPost = (props) => {
             <h2>Add a New Blog</h2>
             <form onSubmit={ onSubmit }>
                 <label>Blog Item</label>
+
                 <input 
                     type="text"
                     required

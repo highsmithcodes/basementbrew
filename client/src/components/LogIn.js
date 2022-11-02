@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, createContext, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import HeaderLogin from './header/HeaderLogin'
+import Context from '../utils/context'
+
 
 const Login = () => {
 
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
-    const [ success, setSuccess ] = useState(false);
+    const [ success, setSuccess ] = useState(false)
+    const test = "ezra"
 
     const onSubmit = e => {
         e.preventDefault()
@@ -30,7 +33,9 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <Redirect to="/dashboard" />
+                <Context.Provider value={test}>
+                    <Redirect to="/dashboard" />
+                </Context.Provider>
             ) : (
             <>
             <HeaderLogin />
