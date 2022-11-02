@@ -6,7 +6,7 @@ import Context from '../utils/context'
 
 
 const Dashboard = () => {
-    const value = useContext(Context)
+    const user = useContext(Context)
     const token = localStorage.getItem('token')
 
     if(!token){
@@ -17,7 +17,7 @@ const Dashboard = () => {
         <>
             <Header/>
             <h1>Dashboard</h1>
-            {value}
+            {user}
             <div className='body'>
                 <AddPost />
             </div>

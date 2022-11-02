@@ -10,7 +10,7 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ success, setSuccess ] = useState(false)
-    const test = "ezra"
+    const [user, setUser] = useState("Jesse Hall");
 
     const onSubmit = e => {
         e.preventDefault()
@@ -33,7 +33,7 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <Context.Provider value={test}>
+                <Context.Provider value={user}>
                     <Redirect to="/dashboard" />
                 </Context.Provider>
             ) : (
