@@ -10,13 +10,14 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ success, setSuccess ] = useState(false)
-    const [user, setUser] = useState("Jesse Hall");
+    const [ id, setId ] = useState('')
 
     const onSubmit = e => {
         e.preventDefault()
-        authUser({ email, password })
+        authUser({ email, password, id })
         setEmail('')
         setPassword('')
+        setId('')
     }
 
     const authUser = async (user) => {
@@ -33,7 +34,7 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <Context.Provider value={user}>
+                <Context.Provider value={id}>
                     <Redirect to="/dashboard" />
                 </Context.Provider>
             ) : (
