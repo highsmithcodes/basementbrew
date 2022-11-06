@@ -1,7 +1,7 @@
 import React, { useState, createContext, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import HeaderLogin from './header/HeaderLogin'
+import Header from './header/Header'
 import Context from '../utils/context'
 
 
@@ -10,7 +10,7 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ success, setSuccess ] = useState(false)
-    const [ id, setId ] = useState('')
+    const [ id, setId ] = useState([])
 
     const onSubmit = e => {
         e.preventDefault()
@@ -39,7 +39,8 @@ const Login = () => {
                 </Context.Provider>
             ) : (
             <>
-            <HeaderLogin />
+            <Header
+             />
             <div className="card">
                 <div className="card-header">
                     <h3 className="card-title">Log In</h3>

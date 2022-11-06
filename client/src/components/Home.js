@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import HeaderLogin from './header/HeaderLogin';
+import Header from './header/Header';
 
 const Home = () => {
     return (
         <>
-            <HeaderLogin />
+            <Header />
         </>
     )
 }
