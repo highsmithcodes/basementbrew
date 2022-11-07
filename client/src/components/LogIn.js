@@ -2,7 +2,6 @@ import React, { useState, createContext, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import Header from './header/Header'
-import Context from '../utils/context'
 
 
 const Login = () => {
@@ -10,21 +9,18 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ success, setSuccess ] = useState(false)
-    const [ id, setId ] = useState([])
 
     const onSubmit = e => {
         e.preventDefault()
-        authUser({ email, password, id })
+        authUser({ email, password })
         setEmail('')
         setPassword('')
-        setId('')
     }
 
     const authUser = async (user) => {
         try {
-            const res = await axios.post('http://localhost:1000/login', user)
+            const res = await axios.post('http://localhost:1000/users/login', user)
             const { token } = res.data
-            localStorage.setItem('token', token)
             setSuccess(true)
         } catch (error) {
             console.log(error)
@@ -34,9 +30,7 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <Context.Provider value={id}>
-                    <Redirect to="/dashboard" />
-                </Context.Provider>
+                <Redirect to="/dashboard" />
             ) : (
             <>
             <Header
@@ -62,7 +56,7 @@ const Login = () => {
             </div>
             </>
             )}
-            </>
+        </>
     )
 }
 
