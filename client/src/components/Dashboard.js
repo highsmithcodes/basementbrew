@@ -5,32 +5,28 @@ import AddPost from './post/AddPost'
 
 
 const Dashboard = () => {
-    const token = localStorage.getItem('token')
-    const [name, setName] = useState('');
+    const [name, setName] = useState("");
 
+  async function getName() {
+    try {
+      const response = await fetch("http:localhost:1000/dashboard/", {
+        method: "GET",
+        headers: { token: localStorage.token },
+      }).then(res => res.body())          // convert to plain text
+      .then(body => console.log(body));
 
-    const getProfile = async () => {
-        try {
-          const response = await fetch('http://localhost:1000/dashboard');
-    
-          const parseRes = await response.json();
-    
-          console.log('get profile', parseRes)
-          setName(parseRes[0].username)
+    //   const parseRes = await response.json();
 
-        } catch (err) {
-          console.log('Dashboard request error');
-          console.error(err.message);
-        }
-      }
-    useEffect(() => {
-        getProfile();
-    })
-
-    if(!token){
-        return <Redirect to="/login" />
+    //   setName(parseRes.user_name);
+    } catch (err) {
+      console.error(err.message);
     }
+  }
 
+
+  useEffect(() => {
+    getName();
+  }, []);
     return (
         <>
             <Header/>
