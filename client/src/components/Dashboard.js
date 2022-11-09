@@ -9,15 +9,15 @@ const Dashboard = () => {
 
   async function getName() {
     try {
-      const response = await fetch("http:localhost:1000/dashboard/", {
+      const response = await fetch("http://localhost:1000/dashboard/", {
         method: "GET",
-        headers: { token: localStorage.token },
-      }).then(res => res.body())          // convert to plain text
-      .then(body => console.log(body));
+        headers: { token: localStorage.token, "Content-Type": "application/json" },
+        // body:JSON.stringify(body)
+      });
 
-    //   const parseRes = await response.json();
+      const parseRes = await response.json();
 
-    //   setName(parseRes.user_name);
+      setName(parseRes.user_name);
     } catch (err) {
       console.error(err.message);
     }

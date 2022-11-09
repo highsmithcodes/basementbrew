@@ -9,8 +9,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/signup', require('./routes/signUp'))
-
 app.use('/login', require('./routes/login'))
+app.use('/dashboard', require('./routes/dashboard'))
 
 const PORT = process.env.PORT || 1000
 

@@ -30,7 +30,6 @@ const Login = () => {
             if (parseRes.token) {
               localStorage.setItem("token", parseRes.token);
               setSuccess(true);
-      
             } else {
                 setSuccess(false);
             }
