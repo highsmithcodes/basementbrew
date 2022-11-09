@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import Header from './header/Header'
@@ -9,15 +10,14 @@ const Dashboard = () => {
 
   async function getName() {
     try {
-      const response = await fetch("http://localhost:1000/dashboard/", {
-        method: "GET",
-        headers: { token: localStorage.token, "Content-Type": "application/json" },
-        // body:JSON.stringify(body)
-      });
+      // We didn't use fetch instead we used axios
+      // removed await
+      const response = axios.get("http://localhost:1000/dashboard");
 
-      const parseRes = await response.json();
-
-      setName(parseRes.user_name);
+      // using .then, create a new promise which extracts the data
+      const dataPromise = response.then((response) => response.data)
+      console.log(dataPromise)
+      setName(dataPromise.email);
     } catch (err) {
       console.error(err.message);
     }
