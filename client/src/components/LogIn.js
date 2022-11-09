@@ -19,8 +19,9 @@ const Login = () => {
 
     const authUser = async (user) => {
         try {
-            const res = await axios.post('http://localhost:1000/users/login', user)
+            const res = await axios.post('http://localhost:1000/login', user)
             const { token } = res.data
+            localStorage.setItem('token', token)
             setSuccess(true)
         } catch (error) {
             console.log(error)

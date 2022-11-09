@@ -10,9 +10,9 @@ const SignUp = () => {
 
     const onSubmit = e => {
         e.preventDefault()
-        createUser({email, username, password })
-        setEmail('')
+        createUser({username, email, password })
         setUsername('')
+        setEmail('')
         setPassword('')
     }
 

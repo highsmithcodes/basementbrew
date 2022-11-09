@@ -1,3 +1,4 @@
+CREATE TABLE basement_brew;
 
 CREATE TABLE users (
     id uuid PRIMARY KEY,

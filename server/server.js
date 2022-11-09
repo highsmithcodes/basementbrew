@@ -1,31 +1,17 @@
-//importing modules
 const express = require('express')
-const sequelize = require('sequelize')
-const dotenv = require('dotenv').config()
-const cookieParser = require('cookie-parser')
- const db = require('./Model')
- const userRoutes = require ('./Routes/userRoutes')
- 
 
-//setting up your port
-const PORT = process.env.PORT || 1001
+const cors = require('cors')
 
-//assigning the variable app to express
 const app = express()
 
-//middleware
+app.use(cors())
+
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
-app.use(cookieParser())
 
-//synchronizing the database and forcing it to false so we dont lose data
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("db has been re sync")
-})
+app.use('/signup', require('./routes/signUp'))
 
-//routes for the user API
-app.use('/api/users', userRoutes)
+app.use('/login', require('./routes/login'))
 
-//listening to server connection
-app.listen(PORT, () => console.log(`Server is connected on ${PORT}`))
+const PORT = process.env.PORT || 1000
 
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}.`))
