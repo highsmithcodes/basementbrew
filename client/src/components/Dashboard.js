@@ -6,18 +6,22 @@ import AddPost from './post/AddPost'
 
 
 const Dashboard = () => {
-    const [name, setName] = useState("");
+  const [userData, setUserData] = useState("");
+  const [name, setName] = useState("");
 
   async function getName() {
     try {
       // We didn't use fetch instead we used axios
       // removed await
-      const response = axios.get("http://localhost:1000/dashboard");
+      const response = axios.get("http://localhost:1000/dashboard",{
+        headers: { token: localStorage.token },
+      })
+      .then((response) => setUserData(response.data))
 
-      // using .then, create a new promise which extracts the data
-      const dataPromise = response.then((response) => response.data)
-      console.log(dataPromise)
-      setName(dataPromise.email);
+      // console.log(dataPromise)
+      // // setName(dataPromise);
+      // setUserData(dataPromise);
+      console.log(response);
     } catch (err) {
       console.error(err.message);
     }
@@ -31,7 +35,8 @@ const Dashboard = () => {
         <>
             <Header/>
             <h1>Dashboard</h1>
-            <h2>Hello {name}</h2>
+            <h2>Hello {userData}</h2>
+            
             <div className='body'>
                 <AddPost />
             </div>
