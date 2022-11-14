@@ -5,7 +5,7 @@ router.get("/", async (req, res) => {
     try {
 
         //req.user has the payload
-        const user = await pool.query("SELECT email FROM users WHERE id = $1", [req.user])
+        const user = await pool.query("SELECT * FROM users WHERE id = $1", [req.user])
 
         res.json(user.rows[0])
 

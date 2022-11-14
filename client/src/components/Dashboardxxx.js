@@ -6,14 +6,14 @@ import AddPost from './post/AddPost'
 
 
 const Dashboard = () => {
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState('');
   const [name, setName] = useState("");
 
   async function getName() {
     try {
       // We didn't use fetch instead we used axios
       // removed await
-      const response = axios.get("http://localhost:1000/dashboard",{
+      const response = axios.get("http://localhost:1000/dashboard/",{
         headers: { token: localStorage.token },
       })
       .then((response) => setUserData(response.data))
@@ -27,7 +27,8 @@ const Dashboard = () => {
     }
   }
 
-
+  // maybe the problem is that the username isn't being stored anywhere
+  // therefore /dshboard will not retrieve anything
   useEffect(() => {
     getName();
   }, []);
@@ -35,7 +36,7 @@ const Dashboard = () => {
         <>
             <Header/>
             <h1>Dashboard</h1>
-            <h2>Hello {userData}</h2>
+            <h2>Hello {userData.email}</h2>
             
             <div className='body'>
                 <AddPost />

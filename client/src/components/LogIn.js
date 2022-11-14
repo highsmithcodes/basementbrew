@@ -1,74 +1,51 @@
-import React, { useState, createContext, useContext } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import axios from 'axios'
-import Header from './header/Header'
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
+const Login = ( { setAuth }) => {
+  const [inputs , setInputs] = useState({
+    email: '',
+    password: '',
+  });
 
-const Login = () => {
+  const { email, password } = inputs;
 
-    const [ email, setEmail ] = useState('')
-    const [ password, setPassword ] = useState('')
-    const [ success, setSuccess ] = useState(false)
+  const handleChange = (e) => {
+    setInputs({...inputs, [e.target.name] : e.target.value})
+  }
 
-    const onSubmit = e => {
-        e.preventDefault()
-        authUser({ email, password })
-        setEmail('')
-        setPassword('')
+  const onSubmitForm =  async (e) => {
+    e.preventDefault();
+    try {
+      const body = { email, password };
+
+      const response = await fetch('http://localhost:1000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const parseRes = await response.json();
+
+      localStorage.setItem('token', parseRes.token);
+      localStorage.setItem('id', parseRes.id);
+
+      setAuth(true);
+    } catch (err) {
+      console.log('error at login')
+      console.error(err.message);
     }
+  }
 
-    const authUser = async (user) => {
-        try {
-            const body = { email, password };
-            const response = await fetch("http://localhost:1000/login", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(body),
-            });
-            const parseRes = await response.json();
-      
-            if (parseRes.token) {
-              localStorage.setItem("token", parseRes.token);
-              setSuccess(true);
-            } else {
-                setSuccess(false);
-            }
-          } catch (err) {
-            console.log(err.message);
-          }
-    }
-
-    return (
-        <>
-            {success ? (
-                <Redirect to="/dashboard" />
-            ) : (
-            <>
-            <Header
-             />
-            <div className="card">
-                <div className="card-header">
-                    <h3 className="card-title">Log In</h3>
-                </div>
-                <div className="card-body">
-                    <form onSubmit={ onSubmit }>
-                        <div>
-                            <input type="email" placeholder="Enter Email" value={ email } onChange={ e => setEmail(e.target.value) } required />
-                        </div>
-                        <div className="mt-2">
-                            <input type="password" placeholder="Enter Password" value={ password } onChange={ e => setPassword(e.target.value) } required />
-                        </div>
-                        <button type="submit"  className="btn btn-primary btn-sm mt-2">LogIn</button>
-                    </form>
-                </div>
-                <div className="card-footer">
-                    <p className="card-text">Don't have an account? <Link to="/signup">SignUp</Link></p>
-                </div>
-            </div>
-            </>
-            )}
-        </>
-    )
+  return (
+    <>
+      <h1>Login</h1>
+      <form onSubmit={onSubmitForm}>
+        <input type="text" name="email" placeholder='email' text="email" onChange={(e) => handleChange(e)} value={email} />
+        <input type="text" name="password" placeholder='password' text="password" onChange={(e) => handleChange(e)} value={password} />
+        <button>test</button>
+      </form>
+      <Link to='/register'>Register</Link>
+    </>
+  )
 }
 
-export default Login
+export default Login;
