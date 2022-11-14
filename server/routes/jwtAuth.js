@@ -68,4 +68,4 @@ router.get('/is-verify', authorization, async (req,res) => {
   }
 });
 
-module.exports= router;
+module.exports = router;
