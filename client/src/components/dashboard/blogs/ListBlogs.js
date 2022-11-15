@@ -26,7 +26,7 @@ const ListBlog = ( { allBlogs, setBlogsChange }) => {
     <>
       <div>
         <ul>
-          {
+          {/* {
             blogs.map((blog) => {
               return (
 
@@ -45,7 +45,7 @@ const ListBlog = ( { allBlogs, setBlogsChange }) => {
                 </div>
               </li>
               )
-          })}
+          })} */}
         </ul>
       </div>
 

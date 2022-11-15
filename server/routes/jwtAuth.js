@@ -61,6 +61,7 @@ router.post('/login', validInfo, async (req, res) => {
 
 router.get('/is-verify', authorization, async (req,res) => {
   try {
+    // delete axios.defaults.headers.common["Authorization"];
     res.json(true);
   } catch (err) {
     console.error(err.message);
