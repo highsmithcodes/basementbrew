@@ -13,12 +13,14 @@ function App() {
 
   const isAuth = async () => {
     try {
+      // This is where we are, there is no error here
       const response = await fetch('http://localhost:1000/auth/is-verify', {
         method: "GET",
         headers: { token: localStorage.token }
       })
       const parseRes = await response.json();
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      console.log("funct")
     } catch (err) {
       console.error(err.message);
     }
@@ -43,6 +45,7 @@ function App() {
                 )
               }
             />
+            {/* So it's recognizing it as !isAuthenticated */}
             <Route
               exact
               path="/register"
