@@ -7,8 +7,8 @@ const Dashboard = ({ setAuth }) => {
   async function getName() {
     try {
       const response = await fetch("http://localhost:1000/dashboard/", {
-        method: "GET",
-        headers: { token: localStorage.token },
+        method: "POST",
+        headers: { jwt: localStorage.token },
       });
 
       const parseRes = await response.json();
