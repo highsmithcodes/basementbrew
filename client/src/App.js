@@ -7,6 +7,14 @@ import { BrowserRouter as Router, Routes, Route, Switch, Navigate, Redirect } fr
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  // Add a function to check for the token before checking Authentication
+  
+  if(localStorage.token){
+    console.log("yuep");
+  } else {
+    console.log("newp");
+  }
+
   const setAuth = boolean => {
     setIsAuthenticated(boolean);
   };
