@@ -1,21 +1,27 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-const bodyParser = require('body-parser');
-const router = require('./routes/jwtAuth');
-const dashboardRouter = require('./routes/dashboard.js');
+const express = require("express");
+const app = express();
+const passport = require("passport");
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
-app.use(express.json())
 
-// app.use('/signup', require('./routes/signUp'))
-// app.use('/login', require('./routes/login'))
-// app.use('/dashboard', require('./routes/dashboard'))
+require("./models/passportConfig")(passport);
 
-app.use('/auth', router);
-app.use('/dashboard', dashboardRouter);
+app.post(
+    "/auth/signup",
+    passport.authenticate("local-signup", { session: false }),
+    (req, res, next) => {
+      res.json({
+        user: req.user,
+      });
+    }
+  );
+  app.post(
+    "/auth/login",
+    passport.authenticate("local-login", { session: false }),
+    (req, res, next) => {
+      res.json({ user: req.user });
+    }
+  );
 
-const PORT = process.env.PORT || 1000
-
-app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}.`))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.listen(3000, () => console.log("Listening on port 3000"));
