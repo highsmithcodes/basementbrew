@@ -1,6 +1,7 @@
 import { getDocs, collection } from 'firebase/firestore'
 import { useEffect, useState } from 'react';
-import { db } from '../../config/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth, db } from '../../config/firebase';
 import { Post } from './post';
 
 export interface Post {
@@ -12,6 +13,7 @@ export interface Post {
 }
 
 export const Main = () => {
+    const [user] = useAuthState(auth);
     const [postsList, setPostsList] = useState<Post[] | null>(null);
     const postsRef = collection(db, "posts");
     
@@ -27,10 +29,47 @@ export const Main = () => {
     }, []);
 
     return (
-    <div>
-        {postsList?.map((post) => (
-            <Post post={post}/>
-        ))}
-    </div>
+    <>
+        {!user ? (
+            <div className="main-default">
+                <div className='main-banner'>
+                    <div className="banner-content">
+                    <div className="left-banner">
+                        <h1>Basement Brew</h1>
+                        <div className="sub-title">A place to share your beer brewing accomplishments</div>
+                    </div>
+                    </div>
+                </div>
+                <div className='split-grid'>
+                    <div className='grid-left white-bx'>
+                    add gifs here
+                    </div>
+                    <div className='grid-right white-bx'>
+                    </div>
+                </div>
+            </div>
+        ) : ( 
+            <>
+                <div className='post-collection'>
+                    <div className='post-collection-inner'>
+                        <div className='user-information'>
+                        {user && (
+                        <>
+                            <img src={user?.photoURL || ""} width="20" height="20" />
+                            {user?.displayName}
+                        </>
+                        )}
+                        </div>
+                        <div className='post-list'>
+                            {postsList?.map((post) => (
+                                <Post post={post}/>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </>  
+        )}
+        
+    </>
     );
 };

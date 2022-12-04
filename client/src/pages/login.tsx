@@ -7,14 +7,28 @@ export const Login = () => {
 
   const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
-    console.log(result);
     navigate("/");
   };
 
   return (
-    <div>
-      <p> Sign In With Google To Continue </p>
-      <button onClick={signInWithGoogle}> Sign In With Google </button>
-    </div>
+    <>
+      <div className="main-default">
+        <div className='main-banner'>
+          <div className="banner-content">
+            <div className="left-banner">
+              <h1>Basement Brew</h1>
+              <div className="sub-title">A place to share your beer brewing accomplishments</div>
+            </div>
+            <div className="right-banner">
+              <div className="sign-in">
+                <p> Sign In/Sign Up With Google To Continue </p>
+                <button onClick={signInWithGoogle}> Sign In With Google </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </>
   );
 };

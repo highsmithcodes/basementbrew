@@ -11,6 +11,9 @@ export const Navbar = () => {
   };
   return (
     <div className="navbar">
+      <div className="navbar-logo">
+        Basement Brew
+      </div>
       <div className="links">
         <Link to="/"> Home </Link>
         {!user ? (
@@ -18,16 +21,15 @@ export const Navbar = () => {
         ) : ( 
           <Link to="/createpost"> Create Post </Link>  
         )}
-        
-      </div>
-      <div className="user">
+        <div className="user">
         {user && (
           <>
-            <p> {user?.displayName} </p>
-            <img src={user?.photoURL || ""} width="20" height="20" />
-            <button onClick={signUserOut}> Log Out</button>
+            {/* {user?.displayName} */}
+            {/* <img src={user?.photoURL || ""} width="20" height="20" /> */}
+            <a className="logout" onClick={signUserOut}> Log Out</a>
           </>
         )}
+      </div>
       </div>
     </div>
   );
