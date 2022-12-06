@@ -100,6 +100,9 @@ body {
 }
 .container .main-banner .banner-content .right-banner .sign-in button {
   padding: 10px 20px;
+  background-color: #edeae2;
+  color: #201f24;
+  font-weight: 600;
 }
 .container .main-banner .banner-content .right-banner .sign-in button:hover {
   cursor: pointer;
@@ -115,9 +118,45 @@ body {
 }
 .container .split-grid .grid-left {
   width: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .split-grid .grid-left .medium-title {
+  font-size: 3em;
+  font-weight: 600;
+  font-family: "Bebas Neue", cursive;
 }
 .container .split-grid .grid-right {
   width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container .split-grid .grid-right .step {
+  background: #f9ab30;
+  color: #201f24;
+  padding: 20px 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  justify-content: start;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.container .split-grid .grid-right .num {
+  font-size: 3em;
+  background: #201f24;
+  color: #edeae2;
+  font-weight: 900;
+  width: 80px;
+  margin-right: 20px;
+}
+.container .split-grid .grid-right .step-details {
+  font-weight: 600;
 }
 .container .white-bx {
   background: #edeae2;
@@ -142,14 +181,32 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  height: fit-content;
+  padding: 60px 20px;
+  background: #201f24;
+  color: #edeae2;
 }
 .post-collection .post-collection-inner .user-information img {
   margin-bottom: 20px;
+}
+.post-collection .post-collection-inner .user-img {
+  width: 50px;
+  height: 50px;
+  background: #edeae2;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.post-collection .post-collection-inner .user-img img {
+  margin-bottom: 0;
 }
 .post-collection .post-collection-inner .post-list {
   width: 80%;
   display: flex;
   flex-direction: column;
+  padding-left: 20px;
 }
 .post-collection .post-collection-inner .post-list .post {
   background: #201f24;
@@ -157,6 +214,8 @@ body {
   margin-bottom: 20px;
   position: relative;
   color: #edeae2;
+  width: 60%;
+  margin: 0 auto 20px auto;
 }
 .post-collection .post-collection-inner .post-list .post .post-footer {
   display: flex;
@@ -166,6 +225,15 @@ body {
 .post-collection .post-collection-inner .post-list .post .post-footer .like-details {
   display: flex;
   flex-direction: row;
+}
+
+.explore-container {
+  background-color: #201f24;
+  padding: 40px 0;
+}
+.explore-container .explore-inner {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .footer {

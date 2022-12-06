@@ -42,9 +42,21 @@ export const Main = () => {
                 </div>
                 <div className='split-grid'>
                     <div className='grid-left white-bx'>
-                    add gifs here
+                        <div className="medium-title">A social media platform for passionate beer brewers.</div>
                     </div>
-                    <div className='grid-right white-bx'>
+                    <div className='grid-right white-bx' id="steps">
+                        <div className='step'>
+                            <div className="num">1</div>
+                            <div className="step-details">Write about your recipe</div>
+                        </div>
+                        <div className='step'>
+                            <div className="num">2</div>
+                            <div className="step-details">Post it to the site</div>
+                        </div>
+                        <div className='step'>
+                            <div className="num">3</div>
+                            <div className="step-details">Connect with others</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,16 +67,22 @@ export const Main = () => {
                         <div className='user-information'>
                         {user && (
                         <>
-                            <img src={user?.photoURL || ""} width="20" height="20" />
+                            <div className='user-img'><img src={user?.photoURL || ""} width="20" height="20" /></div>
                             {user?.displayName}
                         </>
                         )}
                         </div>
                         <div className='post-list'>
+                            <div className='h3'>Your Posts</div>
                             {postsList?.map((post) => (
                                 <Post post={post}/>
                             ))}
                         </div>
+                    </div>
+                </div>
+                <div className="explore-container">
+                    <div className='explore-inner'>
+                        <div className='h3'>Explore Posts</div>
                     </div>
                 </div>
             </>  

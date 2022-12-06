@@ -100,6 +100,9 @@ body {
                     }
                     button{
                         padding: 10px 20px;
+                        background-color: $white-color;
+                        color:$base-color;
+                        font-weight: 600;
                         &:hover{
                             cursor: pointer;
                         }
@@ -118,10 +121,45 @@ body {
         justify-content: space-between;
         .grid-left{
             width:45%;
-            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .medium-title{
+                font-size: 3em;
+                font-weight: 600;
+                font-family: 'Bebas Neue', cursive;
+            }
         }
         .grid-right{
             width:45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .step {
+                background: $yellow-color;
+                color: $base-color;
+                padding: 20px 40px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                flex-direction: row;
+                justify-content: start;
+                padding:10px;
+                margin-bottom:20px;
+            }
+            .num{
+                font-size: 3em;
+                background:$base-color;
+                color:$white-color;
+                font-weight:900;
+                width:80px;
+                margin-right:20px;
+            }
+            .step-details{
+                font-weight: 600;
+            }
         }
     }
     .white-bx{
@@ -146,20 +184,38 @@ body {
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            height:fit-content;
+            padding:60px 20px;
+            background: $base-color;
+            color:$white-color;
             img{
                 margin-bottom:20px;
             }
+        }
+        .user-img{
+            width: 50px;
+            height: 50px;
+            background: $white-color;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            img{margin-bottom: 0;}
         }
         .post-list{
             width:80%;
             display: flex;
             flex-direction: column;
+            padding-left:20px;
             .post{
                 background:$base-color;
                 padding:20px;
                 margin-bottom:20px;
                 position:relative;
                 color:$white-color;
+                width:60%;
+                margin:0 auto 20px auto;
                 .post-footer{
                     display:flex;
                     flex-direction: row;
@@ -171,6 +227,15 @@ body {
                 }
             }
         }
+    }
+}
+
+.explore-container{
+    background-color:$base-color;
+    padding:40px 0;
+    .explore-inner{
+        width:80%;
+        margin:0 auto;
     }
 }
 
