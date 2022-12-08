@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 interface CreateFormData {
     title: string;
     description: string;
+    image: string;
 }
 
 export const CreateForm = () => {
@@ -43,6 +44,8 @@ export const CreateForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onCreatePost)}>
+                <input type='file' />
+                <button type='submit'>Upload</button>
                 <input placeholder="Title..." {...register("title")} />
                 <p style={{color:"red"}}>{errors.title?.message}</p>
                 <textarea placeholder="Description..." {...register("description")} />
