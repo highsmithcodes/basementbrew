@@ -62,6 +62,7 @@ export const Post = (props: Props) => {
 
     return (
         <div className="post">
+            <img src={post.imageUrl} style={{height: 100, width:100}}/>
             <div className="title">{post.title}</div>
             <div className="body">{post.description}</div>
 

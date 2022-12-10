@@ -1,15 +1,19 @@
+import React, { useRef, useState } from "react";
 import {useForm} from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import { addDoc, collection } from 'firebase/firestore';
-import { auth, db } from '../../config/firebase';
+import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { auth, db, storage } from '../../config/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref, uploadString } from "firebase/storage";
+
 
 interface CreateFormData {
     title: string;
     description: string;
-    image: string;
+    imageUrl: string;
+    createdAt: Timestamp;
 }
 
 export const CreateForm = () => {
@@ -20,6 +24,7 @@ export const CreateForm = () => {
     const schema = yup.object().shape({
         title: yup.string().required("You must add a title."),
         description: yup.string().required("You must add a description."),
+        imageUrl: yup.string().required("You must add an image."),
     });
 
     const { 
@@ -33,6 +38,10 @@ export const CreateForm = () => {
     const postsRef = collection(db, "posts");
 
     const onCreatePost = async (data:CreateFormData) => {
+
+        // Need to define what image contains since output is 
+        // [ object FileList ] 
+
         await addDoc(postsRef, {
             ...data,
             username: user?.displayName,
@@ -44,8 +53,14 @@ export const CreateForm = () => {
     return (
         <div>
             <form onSubmit={handleSubmit(onCreatePost)}>
-                <input type='file' />
-                <button type='submit'>Upload</button>
+                <input 
+                    type="file"
+                    accept="image/*"
+                    className="form-control"
+                    {...register("imageUrl")}
+                    placeholder="Image..."
+                />
+                <p style={{color:"red"}}>{errors.imageUrl?.message}</p>
                 <input placeholder="Title..." {...register("title")} />
                 <p style={{color:"red"}}>{errors.title?.message}</p>
                 <textarea placeholder="Description..." {...register("description")} />
