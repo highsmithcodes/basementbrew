@@ -1,13 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import { addDoc, collection, Timestamp } from 'firebase/firestore';
+import { addDoc, collection,Timestamp } from 'firebase/firestore';
 import { auth, db, storage } from '../../config/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
-
+import { ref, uploadBytes } from "firebase/storage";
 
 interface CreateFormData {
     title: string;
@@ -21,6 +20,9 @@ export const CreateForm = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
+    // State to store uploaded file
+    const [imageUpload, setImageUpload] = useState(null);
+
     const schema = yup.object().shape({
         title: yup.string().required("You must add a title."),
         description: yup.string().required("You must add a description."),
@@ -28,7 +30,7 @@ export const CreateForm = () => {
     });
 
     const { 
-        register, 
+        register,
         handleSubmit, 
         formState: {errors} 
     } = useForm<CreateFormData>({
@@ -37,27 +39,41 @@ export const CreateForm = () => {
 
     const postsRef = collection(db, "posts");
 
+    // 1 Function to upload the image
+    // This should work
+    // Love async await
+    const uploadImage = async () => {
+        if (imageUpload == null) return;
+        console.log('storage', storage)
+        const imageRef = ref(storage, `images/${imageUpload}`); 
+        return await uploadBytes(imageRef, imageUpload);
+    }
+
     const onCreatePost = async (data:CreateFormData) => {
-
-        // Need to define what image contains since output is 
-        // [ object FileList ] 
-
+        // Uploading the image
+        uploadImage();
+        // adding to the doc
         await addDoc(postsRef, {
             ...data,
+            imageUrl: imageUpload,
             username: user?.displayName,
             userId: user?.uid,
         });
-
         navigate("/")
     }
+
+    
     return (
         <div>
             <form onSubmit={handleSubmit(onCreatePost)}>
+                {/* e.target.files[0].name instead of calling name from function level */}
                 <input 
                     type="file"
                     accept="image/*"
-                    className="form-control"
-                    {...register("imageUrl")}
+                    id="form-control"
+                    {...register('imageUrl' , {
+                        onChange: (e) => setImageUpload(e.target.files[0].name)
+                      })}
                     placeholder="Image..."
                 />
                 <p style={{color:"red"}}>{errors.imageUrl?.message}</p>

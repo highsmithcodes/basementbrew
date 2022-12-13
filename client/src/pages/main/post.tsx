@@ -1,7 +1,8 @@
 import { addDoc, collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "../../config/firebase";
+import { auth, db, storage } from "../../config/firebase";
 import { Post as IPost } from "./main";
 
 interface Props {
@@ -56,13 +57,17 @@ export const Post = (props: Props) => {
 
     const hasUserLiked = likes?.find((like) => like.userId === user?.uid)
 
+    const url = post.imageUrl;
+    const newUrl = 'gs://basementbrew-b354f.appspot.com/images/' + url;
+    
     useEffect(() =>{
         getLikes();
     }, []);
 
     return (
         <div className="post">
-            <img src={post.imageUrl} style={{height: 100, width:100}}/>
+            <img src={newUrl} style={{height: 100, width:100}}/>
+            {newUrl}
             <div className="title">{post.title}</div>
             <div className="body">{post.description}</div>
 
