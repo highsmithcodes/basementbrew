@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import {useForm} from "react-hook-form";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
-import { addDoc, collection,Timestamp } from 'firebase/firestore';
+import { addDoc, collection,Firestore,query,Timestamp, where } from 'firebase/firestore';
 import { auth, db, storage } from '../../config/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, uploadString } from "firebase/storage";
 
 interface CreateFormData {
     title: string;
@@ -44,9 +44,11 @@ export const CreateForm = () => {
     // Love async await
     const uploadImage = async () => {
         if (imageUpload == null) return;
-        console.log('storage', storage)
         const imageRef = ref(storage, `images/${imageUpload}`); 
-        return await uploadBytes(imageRef, imageUpload);
+        const metadata = {
+            contentType: 'image/jpeg',
+        };
+        return await uploadBytes(imageRef, imageUpload, metadata);
     }
 
     const onCreatePost = async (data:CreateFormData) => {

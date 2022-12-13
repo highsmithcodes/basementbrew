@@ -1,8 +1,12 @@
-import { getDocs, collection } from 'firebase/firestore'
+import { getDocs, collection, where, query } from 'firebase/firestore'
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '../../config/firebase';
 import { Post } from './post';
+import { YourPostList as AllYourPosts } from '../../helpers/yourPosts';
+// Problem with Explore Posts
+import { YourExploreList as ExplorePosts } from '../../helpers/explorePosts';
+import { AllPosts } from '../../helpers/allPosts';
 
 export interface Post {
     id: string;
@@ -13,21 +17,9 @@ export interface Post {
     imageUrl: string;
 }
 
+
 export const Main = () => {
     const [user] = useAuthState(auth);
-    const [postsList, setPostsList] = useState<Post[] | null>(null);
-    const postsRef = collection(db, "posts");
-    
-    const getPosts = async () => {
-        const data = await getDocs(postsRef)
-        setPostsList(
-            data.docs.map((doc) => ({...doc.data(), id: doc.id})) as Post[]
-        );
-    };
-
-    useEffect(() => {
-        getPosts();
-    }, []);
 
     return (
     <>
@@ -75,15 +67,20 @@ export const Main = () => {
                         </div>
                         <div className='post-list'>
                             <div className='h3'>Your Posts</div>
-                            {postsList?.map((post) => (
-                                <Post post={post}/>
-                            ))}
+                            <AllYourPosts />
                         </div>
                     </div>
                 </div>
+                {/* <div className="explore-container">
+                    <div className='explore-inner'>
+                        <div className='h3'>All Posts</div>
+                            <AllPosts />
+                    </div>
+                </div> */}
                 <div className="explore-container">
                     <div className='explore-inner'>
                         <div className='h3'>Explore Posts</div>
+                            <ExplorePosts />
                     </div>
                 </div>
             </>  

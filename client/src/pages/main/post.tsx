@@ -1,9 +1,12 @@
-import { addDoc, collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { ref } from "firebase/storage";
+import { FirebaseError } from "firebase/app";
+import { addDoc, collection, query, where, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { connectStorageEmulator, getDownloadURL, listAll, ref } from "firebase/storage";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, storage } from "../../config/firebase";
 import { Post as IPost } from "./main";
+import { useNavigate } from "react-router-dom";
+
 
 interface Props {
     post: IPost;
@@ -17,10 +20,10 @@ interface Like {
 export const Post = (props: Props) => {
     const {post} = props;
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
+    const [urlImg, setUrlImg] = useState("");
     const [likes, setLikes] = useState<Like[] | null>(null);
-
     const likesRef = collection(db, "likes");
-
     const likesDoc = query(likesRef, where("postId", "==", post.id));
 
     const getLikes = async() => {
@@ -57,17 +60,46 @@ export const Post = (props: Props) => {
 
     const hasUserLiked = likes?.find((like) => like.userId === user?.uid)
 
-    const url = post.imageUrl;
-    const newUrl = 'gs://basementbrew-b354f.appspot.com/images/' + url;
-    
+    const retrievePhoto = async () => {
+        const starsRef = ref(storage, `images/${post.imageUrl}`)
+        await getDownloadURL(starsRef).then(url => {
+        setUrlImg(url)
+        })
+    }
+
+    const postsRef = collection(db, "posts");
+
+    const deletePost = async () => {
+        try {
+            const postToDeleteQuery = query(postsRef, where("userId", "==", user?.uid));
+            const postToDeleteData = await getDocs(postToDeleteQuery)
+            const postId = postToDeleteData.docs[0].id;
+            const postToDelete = doc(db, "posts", postId);
+            await deleteDoc(postToDelete);
+            navigate(0)
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
+    // Get posts matching user id
+    const isUsersPost = post.userId == user?.uid;
+
     useEffect(() =>{
+        // updateUrl();
+        retrievePhoto();
         getLikes();
     }, []);
 
     return (
         <div className="post">
-            <img src={newUrl} style={{height: 100, width:100}}/>
-            {newUrl}
+            {isUsersPost ? (
+            <button onClick={deletePost}>Remove</button>
+            ) : ( 
+                null
+            )}
+            
+            <img src={urlImg} style={{height: 100, width:100}} id="image"/>
             <div className="title">{post.title}</div>
             <div className="body">{post.description}</div>
 
