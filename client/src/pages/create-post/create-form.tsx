@@ -6,7 +6,9 @@ import { addDoc, collection,Firestore,query,Timestamp, where } from 'firebase/fi
 import { auth, db, storage } from '../../config/firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { ref, uploadBytes, uploadString } from "firebase/storage";
+import { ref, uploadBytes, uploadString, uploadBytesResumable } from "firebase/storage";
+import { v4 as uuidv4 } from 'uuid';
+;
 
 interface CreateFormData {
     title: string;
@@ -31,6 +33,7 @@ export const CreateForm = () => {
 
     const { 
         register,
+        watch,
         handleSubmit, 
         formState: {errors} 
     } = useForm<CreateFormData>({
@@ -44,11 +47,19 @@ export const CreateForm = () => {
     // Love async await
     const uploadImage = async () => {
         if (imageUpload == null) return;
+
+        // Reformat imageUpload its data is in File Format
+        // Maybe pass image into a blob
         const imageRef = ref(storage, `images/${imageUpload}`); 
+        // let imagess = await fetch(imageUpload);
+        // let blob = await imagess.blob();
+
         const metadata = {
             contentType: 'image/jpeg',
         };
-        return await uploadBytes(imageRef, imageUpload, metadata);
+        await uploadBytes(imageRef, imageUpload, metadata).then((snapshot) => {
+            console.log('image uploaded', );
+        });
     }
 
     const onCreatePost = async (data:CreateFormData) => {
@@ -71,11 +82,11 @@ export const CreateForm = () => {
                 {/* e.target.files[0].name instead of calling name from function level */}
                 <input 
                     type="file"
-                    accept="image/*"
+                    accept="image/*,.jpeg,.jpg,.png"
                     id="form-control"
                     {...register('imageUrl' , {
-                        onChange: (e) => setImageUpload(e.target.files[0].name)
-                      })}
+                        onChange: (e) => setImageUpload(e.target.files[0])
+                    })}
                     placeholder="Image..."
                 />
                 <p style={{color:"red"}}>{errors.imageUrl?.message}</p>
