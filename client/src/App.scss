@@ -216,13 +216,32 @@ body {
                 color:$white-color;
                 width:60%;
                 margin:0 auto 20px auto;
-                .post-footer{
+                .post-header{
                     display:flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    .remove{
+                        background: transparent;
+                        color: red;
+                        border: none;
+                        font-size: 20px;
+                        cursor: pointer;
+                    }
+                }
+                .post-footer{
+                    display:flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    button{
+                        background:transparent;
+                        border: none;
+                        height:20px;
+                    }
                     .like-details{
                         display: flex;
-                        flex-direction:row ;
+                        flex-direction:row;
+                        p{margin:0;}
                     }
                 }
             }

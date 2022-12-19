@@ -6,6 +6,7 @@ import { Login } from "./pages/login";
 import { CreatePost } from "./pages/create-post/create-post";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { Post } from './components/post';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/post/:id" element={<Post/>} />
         </Routes>
        
         </div>

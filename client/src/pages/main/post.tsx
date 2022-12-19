@@ -17,6 +17,7 @@ interface Like {
     userId: string;
 }
 
+
 export const Post = (props: Props) => {
     const {post} = props;
     const [user] = useAuthState(auth);
@@ -60,6 +61,11 @@ export const Post = (props: Props) => {
 
     const hasUserLiked = likes?.find((like) => like.userId === user?.uid)
 
+    const viewPost = () => {
+        navigate(`/post/${post.id}`);
+    };
+
+
     const retrievePhoto = async () => {
         const starsRef = ref(storage, `images/${post.imageUrl}`)
         await getDownloadURL(starsRef).then(url => {
@@ -93,22 +99,30 @@ export const Post = (props: Props) => {
 
     return (
         <div className="post">
-            {isUsersPost ? (
-            <button onClick={deletePost}>Remove</button>
-            ) : ( 
-                null
-            )}
-            
+            <div className="post-header">
+                <p className="post-username">@{post.username}</p>
+                {isUsersPost ? (
+                <button onClick={deletePost} className="remove"><>&#x2715;</></button>
+                ) : ( 
+                    null
+                )}
+            </div>
+    
             <img src={urlImg} style={{height: 100, width:100}} id="image"/>
             <div className="title">{post.title}</div>
             <div className="body">{post.description}</div>
 
             <div className="post-footer">
-                <p>@{post.username}</p>
+                <div className="comment-details">
+                    <button><>&#128172;</></button>
+                </div>
                 <div className="like-details">
                     <button onClick={hasUserLiked ? removeLike : addLike}>{hasUserLiked ? <>&#x2665;</> : <>&#9825;</> }</button>
-                    {likes && <p>Likes: {likes?.length}</p>}
+                    {likes && <p>{likes?.length}</p>}
                 </div>
+            </div>
+            <div className="comment">
+                <button onClick={viewPost}>View Post{post.id}</button>
             </div>
         </div>
     );

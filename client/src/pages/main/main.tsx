@@ -71,12 +71,6 @@ export const Main = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="explore-container">
-                    <div className='explore-inner'>
-                        <div className='h3'>All Posts</div>
-                            <AllPosts />
-                    </div>
-                </div> */}
                 <div className="explore-container">
                     <div className='explore-inner'>
                         <div className='h3'>Explore Posts</div>

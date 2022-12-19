@@ -217,14 +217,35 @@ body {
   width: 60%;
   margin: 0 auto 20px auto;
 }
-.post-collection .post-collection-inner .post-list .post .post-footer {
+.post-collection .post-collection-inner .post-list .post .post-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+.post-collection .post-collection-inner .post-list .post .post-header .remove {
+  background: transparent;
+  color: red;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.post-collection .post-collection-inner .post-list .post .post-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.post-collection .post-collection-inner .post-list .post .post-footer button {
+  background: transparent;
+  border: none;
+  height: 20px;
+}
 .post-collection .post-collection-inner .post-list .post .post-footer .like-details {
   display: flex;
   flex-direction: row;
+}
+.post-collection .post-collection-inner .post-list .post .post-footer .like-details p {
+  margin: 0;
 }
 
 .explore-container {

@@ -21,9 +21,6 @@ export const AllPosts = () => {
     
     const getPosts = async () => {
         const data = await getDocs(postsRef)
-        setPostsList(
-            data.docs.map((doc) => ({...doc.data(), id: doc.id})) as Post[]
-        );
         try {
             setPostsList(
                 data.docs.map((doc) => ({...doc.data(), id: doc.id})) as Post[]
