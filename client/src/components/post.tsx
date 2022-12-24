@@ -1,44 +1,47 @@
-import { getDocs, collection, where, query } from 'firebase/firestore'
+import { getDocs, collection, where, query, doc, getDoc, onSnapshot } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { auth, db, storage } from "../config/firebase";
 
-// export interface Post {
-//     id: string;
-//     userId: string;
-//     title: string;
-//     description: string;
-//     username: string;
-//     imageUrl: string;
-// }
+export interface Post {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  username: string;
+}
 
 export const Post = () => {
     const { id } = useParams();
-    const [user] = useAuthState(auth);
-    // const [post, setPost] = useState<Post[] | null>(null);
-    // const postRef = collection(db, "post");
-    // const postDoc = query(postRef, where("postId", "==", id));
-    const [movie, setMovie] = useState([]);
-    const getPost = async () => {
-        const postToShow = await getDocs(collection(db, "posts"))
-        const firebaseMovies = [];
-        querySnapshot.forEach((doc) => {
-            firebaseMovies.push({...doc.data(), id:doc.id});
-        });
-        const movieData = firebaseMovies.filter((item) => item.id === id);
-        setMovie(movieData[0])
-
+    const [postById, setPostById] = useState<Post[] | null>(null);
+    const likesRef = collection(db, "posts");
+    const likesDoc = query(likesRef, where("id", "==", id));
+    
+    const getPost = async() => {
+    
+    const data = await getDocs(likesDoc)
+      try {
+        setPostById(
+            data.docs.map((doc) => ({...doc.data()})) as Post[]
+        );
+        // It's getting the ID
+        console.log(id)
+      } catch(err){
+          console.log(err)
+      }
     }
 
-    useEffect(() => {
-        getPost();
-    }, [id]);
+    useEffect(() =>{
+      getPost();
+    }, []);
   
-
     return (
-        <div className="container border bg-light" style={{ marginTop: 70}}>
-            <Post />
+        <div className="container border bg-light">
+          {postById && <p>{postById?.length}{postById?.title}</p>}
+          {/* {postById?.map((post) => (
+            <Post  />
+          ))} */}
         </div>
     );
 };
