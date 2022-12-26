@@ -66,12 +66,12 @@ export const Post = (props: Props) => {
     };
 
 
-    const retrievePhoto = async () => {
-        const starsRef = ref(storage, `images/${post.imageUrl}`)
-        await getDownloadURL(starsRef).then(url => {
-        setUrlImg(url)
-        })
-    }
+    // const retrievePhoto = async () => {
+    //     const starsRef = ref(storage, `images/${post.imageUrl}`)
+    //     await getDownloadURL(starsRef).then(url => {
+    //     setUrlImg(url)
+    //     })
+    // }
 
     const postsRef = collection(db, "posts");
 
@@ -93,7 +93,7 @@ export const Post = (props: Props) => {
 
     useEffect(() =>{
         // updateUrl();
-        retrievePhoto();
+        // retrievePhoto();
         getLikes();
     }, []);
 
@@ -108,7 +108,7 @@ export const Post = (props: Props) => {
                 )}
             </div>
     
-            <img src={urlImg} style={{height: 100, width:100}} id="image"/>
+            {/* <img src={urlImg} style={{height: 100, width:100}} id="image"/> */}
             <div className="title">{post.title}</div>
             <div className="body">{post.description}</div>
 

@@ -1,47 +1,30 @@
-import { getDocs, collection, where, query, doc, getDoc, onSnapshot } from 'firebase/firestore'
+import { getDocs, collection, where, query, doc, getDoc, onSnapshot, DocumentData } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
 import { auth, db, storage } from "../config/firebase";
+import { Post as IPost } from "../pages/main/main";
 
-export interface Post {
-  id: string;
-  userId: string;
-  title: string;
-  description: string;
-  username: string;
-}
 
 export const Post = () => {
-    const { id } = useParams();
-    const [postById, setPostById] = useState<Post[] | null>(null);
-    const likesRef = collection(db, "posts");
-    const likesDoc = query(likesRef, where("id", "==", id));
-    
-    const getPost = async() => {
-    
-    const data = await getDocs(likesDoc)
-      try {
-        setPostById(
-            data.docs.map((doc) => ({...doc.data()})) as Post[]
-        );
-        // It's getting the ID
-        console.log(id)
-      } catch(err){
-          console.log(err)
-      }
-    }
+  const [post, setPost] = useState()
+  const {id} = useParams()
+  const [postWithId, setPostWithId] = useState<IPost[] | null>(null);
 
-    useEffect(() =>{
-      getPost();
-    }, []);
-  
+  // useEffect(() => {
+  //   const postQuery = query(collection(db, 'posts'), where('postId', '==', id))
+  //   onSnapshot(postQuery, (post) => {
+  //     post.forEach(post => {
+  //       setPost({ data: post.data(), postDocId: post.id })
+  //     })
+  //   })
+  // }, [id])
+
+
+
     return (
         <div className="container border bg-light">
-          {postById && <p>{postById?.length}{postById?.title}</p>}
-          {/* {postById?.map((post) => (
-            <Post  />
-          ))} */}
+          <h1>Test</h1>
         </div>
     );
 };

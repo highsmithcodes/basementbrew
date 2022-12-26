@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 interface CreateFormData {
     title: string;
     description: string;
-    imageUrl: string;
+    // imageUrl: string;
     createdAt: Timestamp;
 }
 
@@ -23,12 +23,12 @@ export const CreateForm = () => {
     const navigate = useNavigate();
 
     // State to store uploaded file
-    const [imageUpload, setImageUpload] = useState(null);
+//     const [imageUpload, setImageUpload] = useState(null);
 
     const schema = yup.object().shape({
         title: yup.string().required("You must add a title."),
         description: yup.string().required("You must add a description."),
-        imageUrl: yup.string().required("You must add an image."),
+        // imageUrl: yup.string().required("You must add an image."),
     });
 
     const { 
@@ -45,30 +45,30 @@ export const CreateForm = () => {
     // 1 Function to upload the image
     // This should work
     // Love async await
-    const uploadImage = async () => {
-        if (imageUpload == null) return;
+    // const uploadImage = async () => {
+    //     if (imageUpload == null) return;
 
-        // Reformat imageUpload its data is in File Format
-        // Maybe pass image into a blob
-        const imageRef = ref(storage, `images/${imageUpload}`); 
-        // let imagess = await fetch(imageUpload);
-        // let blob = await imagess.blob();
+    //     // Reformat imageUpload its data is in File Format
+    //     // Maybe pass image into a blob
+    //     const imageRef = ref(storage, `images/${imageUpload}`); 
+    //     // let imagess = await fetch(imageUpload);
+    //     // let blob = await imagess.blob();
 
-        const metadata = {
-            contentType: 'image/jpeg',
-        };
-        await uploadBytes(imageRef, imageUpload, metadata).then((snapshot) => {
-            console.log('image uploaded', );
-        });
-    }
+    //     const metadata = {
+    //         contentType: 'image/jpeg',
+    //     };
+    //     await uploadBytes(imageRef, imageUpload, metadata).then((snapshot) => {
+    //         console.log('image uploaded', );
+    //     });
+    // }
 
     const onCreatePost = async (data:CreateFormData) => {
         // Uploading the image
-        uploadImage();
+        // uploadImage();
         // adding to the doc
         await addDoc(postsRef, {
             ...data,
-            imageUrl: imageUpload,
+            // imageUrl: imageUpload,
             username: user?.displayName,
             userId: user?.uid,
         });
@@ -80,7 +80,7 @@ export const CreateForm = () => {
         <div>
             <form onSubmit={handleSubmit(onCreatePost)}>
                 {/* e.target.files[0].name instead of calling name from function level */}
-                <input 
+                {/* <input 
                     type="file"
                     accept="image/*,.jpeg,.jpg,.png"
                     id="form-control"
@@ -88,8 +88,8 @@ export const CreateForm = () => {
                         onChange: (e) => setImageUpload(e.target.files[0])
                     })}
                     placeholder="Image..."
-                />
-                <p style={{color:"red"}}>{errors.imageUrl?.message}</p>
+                /> */}
+                {/* <p style={{color:"red"}}>{errors.imageUrl?.message}</p> */}
                 <input placeholder="Title..." {...register("title")} />
                 <p style={{color:"red"}}>{errors.title?.message}</p>
                 <textarea placeholder="Description..." {...register("description")} />
