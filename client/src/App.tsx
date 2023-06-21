@@ -1,30 +1,30 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
-import { Main } from "./pages/main/main";
-import { Login } from "./pages/login";
-import { CreatePost } from "./pages/create-post/create-post";
-import { Navbar } from "./components/navbar";
-import { Footer } from "./components/footer";
-import { Post } from './components/post';
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Amplify from 'aws-amplify';
+import awsConfig from './components/awsConfig';
+
+Amplify.configure(awsConfig);
+
 
 function App() {
+  
   return (
     <div className="App">
-      <Router>
-      <Navbar />
-      <div className='container'>
-        
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/post/:id" element={<Post />} />
-        </Routes>
-       
-        </div>
-        <Footer />
-      </Router>
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }

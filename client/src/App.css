@@ -1,289 +1,38 @@
 .App {
   text-align: center;
-  position: relative;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #201f24;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-.navbar {
-  width: 100%;
-  height: 80px;
-  background-color: #201f24;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.navbar .links {
-  text-align: center;
-  margin-right: 50px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.navbar .links a {
-  color: #edeae2;
-  padding: 20px;
-  text-decoration: none;
-}
-.navbar .logout {
-  color: #edeae2;
-}
-.navbar .logout:hover {
-  cursor: pointer;
-}
-.navbar .navbar-logo {
-  font-family: "Bebas Neue", cursive;
-  color: #edeae2;
-  font-size: 1.7em;
-  padding-left: 20px;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-.container {
-  display: flex;
-  width: inherit;
-  flex-direction: column;
-  align-items: center;
+.App-header {
+  background-color: #282c34;
   min-height: 100vh;
-}
-.container .main-default {
-  height: 100%;
-  width: 100%;
-}
-.container .main-banner {
-  height: 20vh;
-  background: #edeae2;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.container .main-banner .banner-content {
-  width: 80%;
-  text-align: left;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.container .main-banner .banner-content h1 {
-  font-weight: 600;
-  font-size: 6em;
-  font-family: "Bebas Neue", cursive;
-  margin: 0;
-}
-.container .main-banner .banner-content .sub-title {
-  font-size: 1.4em;
-}
-.container .main-banner .banner-content .left-banner {
-  width: 50%;
-}
-.container .main-banner .banner-content .right-banner {
-  width: 50%;
-  text-align: center;
-}
-.container .main-banner .banner-content .right-banner .sign-in {
-  display: inline-block;
-  padding: 40px;
-  background: #201f24;
-  color: #edeae2;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-.container .main-banner .banner-content .right-banner .sign-in p {
-  margin-top: 0;
-  padding-bottom: 20px;
-}
-.container .main-banner .banner-content .right-banner .sign-in button {
-  padding: 10px 20px;
-  background-color: #edeae2;
-  color: #201f24;
-  font-weight: 600;
-}
-.container .main-banner .banner-content .right-banner .sign-in button:hover {
-  cursor: pointer;
-}
-.container .split-grid {
-  width: 80%;
-  margin: 0 auto;
-  min-height: 60vh;
-  padding: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.container .split-grid .grid-left {
-  width: 45%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container .split-grid .grid-left .medium-title {
-  font-size: 3em;
-  font-weight: 600;
-  font-family: "Bebas Neue", cursive;
-}
-.container .split-grid .grid-right {
-  width: 45%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-}
-.container .split-grid .grid-right .step {
-  background: #f9ab30;
-  color: #201f24;
-  padding: 20px 40px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  flex-direction: row;
-  justify-content: start;
-  padding: 10px;
-  margin-bottom: 20px;
-}
-.container .split-grid .grid-right .num {
-  font-size: 3em;
-  background: #201f24;
-  color: #edeae2;
-  font-weight: 900;
-  width: 80px;
-  margin-right: 20px;
-}
-.container .split-grid .grid-right .step-details {
-  font-weight: 600;
-}
-.container .white-bx {
-  background: #edeae2;
-  padding: 20px;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.post-collection {
-  background: #edeae2;
-  width: 100%;
-}
-.post-collection .post-collection-inner {
-  width: 80%;
-  margin: 0 auto;
-  padding: 60px 0;
-  display: flex;
-  flex-direction: row;
-}
-.post-collection .post-collection-inner .user-information {
-  width: 20%;
-  display: flex;
-  width: 20%;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: fit-content;
-  padding: 60px 20px;
-  background: #201f24;
-  color: #edeae2;
-}
-.post-collection .post-collection-inner .user-information img {
-  margin-bottom: 20px;
-}
-.post-collection .post-collection-inner .user-img {
-  width: 50px;
-  height: 50px;
-  background: #edeae2;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
-}
-.post-collection .post-collection-inner .user-img img {
-  margin-bottom: 0;
-}
-.post-collection .post-collection-inner .post-list {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
-}
-.post-collection .post-collection-inner .post-list .post {
-  background: #201f24;
-  padding: 20px;
-  margin-bottom: 20px;
-  position: relative;
-  color: #edeae2;
-  width: 60%;
-  margin: 0 auto 20px auto;
-}
-.post-collection .post-collection-inner .post-list .post .post-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.post-collection .post-collection-inner .post-list .post .post-header .remove {
-  background: transparent;
-  color: red;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-.post-collection .post-collection-inner .post-list .post .post-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-}
-.post-collection .post-collection-inner .post-list .post .post-footer button {
-  background: transparent;
-  border: none;
-  height: 20px;
-}
-.post-collection .post-collection-inner .post-list .post .post-footer .like-details {
-  display: flex;
-  flex-direction: row;
-}
-.post-collection .post-collection-inner .post-list .post .post-footer .like-details p {
-  margin: 0;
+.App-link {
+  color: #61dafb;
 }
 
-.explore-container {
-  background-color: #201f24;
-  padding: 40px 0;
-}
-.explore-container .explore-inner {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.footer {
-  padding: 40px;
-  background: #edeae2;
-}
-.footer .footer-inner {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-}
-.footer .footer-inner .footer-left {
-  width: 50%;
-  text-align: left;
-  color: #0e0b0c;
-}
-.footer .footer-inner .footer-left .footer-logo {
-  font-family: "Bebas Neue", cursive;
-  font-size: 3em;
-  color: #0e0b0c;
-}
-.footer .footer-inner .footer-right {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.footer .footer-inner .footer-right a {
-  color: #0e0b0c;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
