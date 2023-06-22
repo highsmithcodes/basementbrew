@@ -1,30 +1,29 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
-import Amplify from 'aws-amplify';
-import awsConfig from './components/awsConfig';
-
-Amplify.configure(awsConfig);
-
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+// import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  
+  // const isAuthenticated = false; // Replace with your authentication logic
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <div>
+        <Nav />
+        <Routes>
+          <Route  path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
     </div>
   );
 }
