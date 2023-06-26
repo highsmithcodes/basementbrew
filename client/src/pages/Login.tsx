@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
-import { Auth } from 'aws-amplify';
-import { AmplifyAuthenticator, AmplifySignIn } from '@aws-amplify/ui-react';
-import CustomLoginForm from '../components/Form';
+// components/Login.js
+import { useEffect } from "react";
 
+import { Authenticator, useAuthenticator, View } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-const Login: React.FC = () => {
+import { useNavigate, useLocation } from 'react-router';
+
+export function Login() {
+  const { route } = useAuthenticator((context) => [context.route]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  let from = location.state?.from?.pathname || '/';
+  useEffect(() => {
+    if (route === 'authenticated') {
+      navigate(from, { replace: true });
+    }
+  }, [route, navigate, from]);
   return (
-    <div>
-      <h2>Login</h2>
-      <AmplifyAuthenticator>
-        <AmplifySignIn slot="sign-in" formFields={[]}>
-          <CustomLoginForm />
-        </AmplifySignIn>
-      </AmplifyAuthenticator>
-    </div>
+    <View className="auth-wrapper">
+      <Authenticator></Authenticator>
+    </View>
   );
-};
-
+}
 export default Login;

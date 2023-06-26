@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-basementbrew-dev-150150-authRole",
+      "UnauthRoleArn": "arn:aws:iam::692362868801:role/amplify-basementbrew-dev-150150-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::692362868801:role/amplify-basementbrew-dev-150150-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-basementbrew-dev-150150-deployment",
+      "UnauthRoleName": "amplify-basementbrew-dev-150150-unauthRole",
+      "StackName": "amplify-basementbrew-dev-150150",
+      "StackId": "arn:aws:cloudformation:us-east-1:692362868801:stack/amplify-basementbrew-dev-150150/61d3b9d0-1432-11ee-bdcc-0a52b9f2b5d9",
+      "AmplifyAppId": "d88hzx7qqoqs8"
+    },
+    "categories": {
+      "auth": {
+        "basementbrew0bb0ce67": {}
+      }
+    }
+  }
+}
