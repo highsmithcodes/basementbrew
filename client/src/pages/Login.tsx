@@ -18,7 +18,9 @@ export function Login() {
   }, [route, navigate, from]);
   return (
     <View className="auth-wrapper">
+      <div className="my-8">
       <Authenticator></Authenticator>
+      </div>
     </View>
   );
 }

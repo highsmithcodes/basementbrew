@@ -2,6 +2,7 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
+import Footer from './Footer';
 
 export function Layout() {
   const { route, signOut } = useAuthenticator((context) => [
@@ -19,38 +20,41 @@ export function Layout() {
       <nav className="bg-gray-800 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            <div className="flex space-x-4">
-              <Button onClick={() => navigate('/')}>Home</Button>
-              <Button onClick={() => navigate('/protected')}>
-                First Protected Route
-              </Button>
-              <Button onClick={() => navigate('/protected2')}>
-                Second Protected Route
-              </Button>
-              {route !== 'authenticated' ? (
-                <Button onClick={() => navigate('/login')}>Login</Button>
-              ) : (
-                <Button onClick={() => logOut()}>Logout</Button>
-              )}
-            </div>
             <div>
               <Heading level={1} className="text-white text-xl">
-                Example Auth Routes App
+                Basement Brew
               </Heading>
+            </div>
+            <div className="flex space-x-4">
+              <a className="text-white" onClick={() => navigate('/')}>Home</a>
+              
+              {route !== 'authenticated' ? (
+                <a className="text-white" onClick={() => navigate('/login')}>Login</a>
+              ) : (
+                <>
+                <a className="text-white" onClick={() => navigate('/protected')}>
+                Dashboard
+                </a>
+                <a className="text-white" onClick={() => navigate('/protected2')}>
+                Settings
+                </a>
+                <a className="text-white" onClick={() => logOut()}>Logout</a>
+                </>
+              )}
             </div>
           </div>
         </div>
       </nav>
 
-      <View className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* <View className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {route === 'authenticated' ? (
           <p className="text-green-500">You are logged in!</p>
         ) : (
           <p className="text-red-500">Please Login!</p>
         )}
-      </View>
-
+      </View> */}
       <Outlet />
+      <Footer/>
     </>
   );
 }
