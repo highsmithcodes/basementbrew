@@ -40,3 +40,12 @@
     transform: rotate(360deg);
   }
 }
+.amplify-button.amplify-field-group__control.amplify-button--primary.amplify-button--fullwidth{
+  background-color: black;
+}
+.amplify-flex.amplify-tabs button{
+  color:black;
+}
+.amplify-tabs-item[data-state=active]{
+  border-color:black;
+}

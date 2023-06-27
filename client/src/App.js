@@ -1,10 +1,10 @@
 //App.js
 import { Authenticator } from '@aws-amplify/ui-react';
 
-import { Protected } from './pages/Protected';
+import { Dashboard } from './pages/Dashboard';
 import { RequireAuth } from './RequireAuth';
 import { Login } from './pages/Login';
-import { ProtectedSecond } from './pages/ProtectedSecond';
+import { CreatePost } from './pages/createPost';
 import { Home } from './pages/Home';
 import { Layout } from './components/Layout';
 import { UserProfile } from './pages/updateProfile';
@@ -19,18 +19,18 @@ function MyRoutes() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route
-            path="/protected"
+            path="/dashboard"
             element={
               <RequireAuth>
-                <Protected />
+                <Dashboard />
               </RequireAuth>
             }
           />
           <Route
-            path="/protected2"
+            path="/create-post"
             element={
               <RequireAuth>
-                <ProtectedSecond />
+                <CreatePost />
               </RequireAuth>
             }
           />
