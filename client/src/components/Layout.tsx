@@ -25,17 +25,18 @@ export function Layout() {
                 Basement Brew
               </Heading>
             </div>
-            <div className="flex space-x-4">
-              <a className="text-white" onClick={() => navigate('/')}>Home</a>
-              
+            <div className="flex space-x-4">              
               {route !== 'authenticated' ? (
+                <>
+                <a className="text-white" onClick={() => navigate('/')}>Home</a>
                 <a className="text-white" onClick={() => navigate('/login')}>Login</a>
+                </>
               ) : (
                 <>
                 <a className="text-white" onClick={() => navigate('/protected')}>
                 Dashboard
                 </a>
-                <a className="text-white" onClick={() => navigate('/protected2')}>
+                <a className="text-white" onClick={() => navigate('/profile')}>
                 Settings
                 </a>
                 <a className="text-white" onClick={() => logOut()}>Logout</a>

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import awsConfig from './components/awsConfig';
 
+
 Amplify.configure(awsConfig);
 
 const root = ReactDOM.createRoot(

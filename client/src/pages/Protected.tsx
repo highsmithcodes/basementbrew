@@ -1,14 +1,52 @@
 // components/Protected.js
 import { useAuthenticator, Heading } from '@aws-amplify/ui-react';
+import { useEffect, useState } from 'react';
+import { Auth } from 'aws-amplify';
+import { DynamoDB } from 'aws-sdk';
 export function Protected() {
-  const { route } = useAuthenticator((context) => [context.route]);
+  const [userProfile, setUserProfile] = useState<any>(null); // Specify the type as `any` for now
 
+  const { route } = useAuthenticator((context) => [context.route]);
+  const fetchUserProfile = async () => {
+    try {
+      const currentUser = await Auth.currentAuthenticatedUser();
+      const userId = currentUser.username;
+  
+      const dynamoDB = new DynamoDB.DocumentClient({
+        region: 'us-east-1',
+        accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
+        secretAccessKey: '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',
+      });
+  
+      const queryParams = {
+        TableName: 'basementbrew_users',
+        Key: { UserInfo: userId },
+      };
+  
+      const result = await dynamoDB.get(queryParams).promise();
+  
+      if (result.Item) {
+        setUserProfile(result.Item);
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    }
+  };
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
   const message =
     route === 'authenticated' ? 'FIRST PROTECTED ROUTE!' : 'Loading...';
   return (
     <div className="container mx-auto my-28">
       <div className="grid-container grid grid-cols-5">
-        <div className="item1 col-span-1">1</div>
+        <div className="item1 col-span-1">
+          {userProfile && (
+            <div>
+              <h3>Username: {userProfile.username}</h3>
+              {/* Display other profile information here */}
+            </div>
+          )}</div>
         <div className="item2 col-span-4">      
           
 

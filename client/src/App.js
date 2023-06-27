@@ -7,7 +7,7 @@ import { Login } from './pages/Login';
 import { ProtectedSecond } from './pages/ProtectedSecond';
 import { Home } from './pages/Home';
 import { Layout } from './components/Layout';
-
+import { UserProfile } from './pages/updateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -31,6 +31,14 @@ function MyRoutes() {
             element={
               <RequireAuth>
                 <ProtectedSecond />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <RequireAuth>
+                <UserProfile />
               </RequireAuth>
             }
           />
