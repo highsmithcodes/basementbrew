@@ -36,9 +36,6 @@ export function Layout() {
                 <a className="text-white" onClick={() => navigate('/dashboard')}>
                 Dashboard
                 </a>
-                <a className="text-white" onClick={() => navigate('/profile')}>
-                Settings
-                </a>
                 <a className="text-white" onClick={() => logOut()}>Logout</a>
                 </>
               )}

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import AWS from 'aws-sdk';
+import { SketchPicker } from 'react-color';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
@@ -10,6 +14,9 @@ export function CreatePostForm() {
   const [ibu, setIbu] = useState('');
   const [color, setColor] = useState('');
   const [size, setSize] = useState('');
+  const [description, setDescription] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSaveChanges = async () => {
     try {
@@ -32,12 +39,13 @@ export function CreatePostForm() {
       // Prepare the new post item
       const postItem = {
         PostID: Date.now().toString(), // Generate a unique ID for the post
-        UserID: userId,
+        PostDetails: userId,
         BeerType: beerType,
         ABV: abv,
         IBU: ibu,
         Color: color,
         Size: size,
+        Description: description,
       };
   
       // Save the post to the basementbrew_posts table
@@ -50,58 +58,72 @@ export function CreatePostForm() {
       console.log('Post saved successfully');
   
       console.log('User profile updated successfully');
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error saving post:', error);
     }
   };
 
+  const handleColorChange = (newColor: any) => {
+    setColor(newColor.hex);
+  };
+
+
   return (
-    <div className="max-w-md mx-auto p-4 bg-white shadow rounded">
+    <div className="max-w-lg mx-auto p-4 bg-white shadow rounded">
       <h2 className="text-xl font-bold mb-4">User Profile Form</h2>
-      <div className="mb-4">
-        <label className="block mb-2">Beer Type</label>
-        <input
-          type="text"
-          value={beerType}
-          onChange={(e) => setBeerType(e.target.value)}
-          className="w-full border border-gray-300 rounded px-4 py-2"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">ABV</label>
-        <input
-          type="number"
-          value={abv}
-          onChange={(e) => setAbv(e.target.value)}
-          className="w-full border border-gray-300 rounded px-4 py-2"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">IBU</label>
-        <input
-          type="number"
-          value={ibu}
-          onChange={(e) => setIbu(e.target.value)}
-          className="w-full border border-gray-300 rounded px-4 py-2"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Color</label>
-        <input
-          type="text"
-          value={color}
-          onChange={(e) => setColor(e.target.value)}
-          className="w-full border border-gray-300 rounded px-4 py-2"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2">Size</label>
-        <input
-          type="text"
-          value={size}
-          onChange={(e) => setSize(e.target.value)}
-          className="w-full border border-gray-300 rounded px-4 py-2"
-        />
+      <div className="grid grid-cols-2 gap-3">
+        <div className="mb-4">
+          <label className="block mb-2">Beer Type</label>
+          <input
+            type="text"
+            value={beerType}
+            onChange={(e) => setBeerType(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">ABV</label>
+          <input
+            type="number"
+            value={abv}
+            onChange={(e) => setAbv(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">IBU</label>
+          <input
+            type="number"
+            value={ibu}
+            onChange={(e) => setIbu(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Color</label>
+          <SketchPicker
+            color={color}
+            onChangeComplete={handleColorChange}
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Size</label>
+          <input
+            type="text"
+            value={size}
+            onChange={(e) => setSize(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2">Description</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2"
+          />
+        </div>
       </div>
       <button
         onClick={handleSaveChanges}

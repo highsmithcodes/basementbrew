@@ -11,6 +11,7 @@ import { UserProfile } from './pages/updateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import AllPosts from './pages/allPosts';
 
 function MyRoutes() {
   return (
@@ -43,6 +44,8 @@ function MyRoutes() {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/brews" element={<Login />} />
+          <Route path="/all-posts" element={<AllPosts />} />
         </Route>
       </Routes>
     </BrowserRouter>

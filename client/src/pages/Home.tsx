@@ -30,12 +30,12 @@ export function Home() {
               Get Started
             </Link>
 
-            <a
+            {/* <a
               className="block w-full rounded px-12 py-3 text-sm font-medium text-amber-600 shadow hover:text-black focus:outline-none focus:ring active:text-amber-500 sm:w-auto"
               href="/about"
             >
               Learn More
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
