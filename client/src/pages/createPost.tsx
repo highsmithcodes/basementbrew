@@ -23,40 +23,28 @@ export function CreatePost() {
         <div className="item2 col-span-4">      
           <nav aria-label="Tabs">
             <ul className="flex border-b border-gray-100">
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/brews">Your Brews</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/brews">Your Brews</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/likes">Likes</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/all-posts">All Brews</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/favorites">Favorites</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/favorites">Likes</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                
-                <a className="relative block p-4" href="">
-                <span
-                    className="absolute inset-x-0 -bottom-px h-px w-full bg-pink-600"
-                  ></span>
+              <li className="flex-1 bg-black">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/create-post">Create Post</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/create-post">Create Post</Link>
                   </div>
-                </a>
               </li>
             </ul>
           </nav>

@@ -6,7 +6,7 @@ import UserDetails from '../components/UserDetails';
 import { HeartIcon } from '@heroicons/react/20/solid';
 
 
-export function Dashboard() {
+export function PostDetail() {
   const [userPosts, setUserPosts] = useState<any[]>([]);
 
   useEffect(() => {
@@ -48,8 +48,8 @@ export function Dashboard() {
         </div>
         <div className="item2 col-span-4">
         <nav aria-label="Tabs">
-            <ul className="flex border-b">
-              <li className="flex-1 bg-black">
+            <ul className="flex border-b border-gray-100">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
                     <Link className="text-sm font-medium text-white p-4" to="/brews">Your Brews</Link>
                   </div>
@@ -67,9 +67,7 @@ export function Dashboard() {
                   </div>
               </li>
 
-              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
-                
-               
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">               
                   <div className="flex items-center justify-center gap-4">
                     <Link className="text-sm font-medium text-white p-4" to="/create-post">Create Post</Link>
                   </div>
@@ -77,19 +75,27 @@ export function Dashboard() {
             </ul>
           </nav>
           <div className="py-5">
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-1">
             {userPosts.map((post) => (
               <div key={post.PostID} className="mb-4 rounded-lg border border-black px-8 py-4">
-                <h2 className="text-lg font-semibold">{post.BeerType}</h2>
-                <p>{post.Description}</p>
+                <h2 className="text-lg font-semibold">Beer type: {post.BeerType}</h2>
+                <p>Description: {post.Description}</p>
+                <div className="flex items-center mt-2">
+                    Color: <div
+                    className="w-6 h-6 mr-2 rounded-full ml-2"
+                    style={{ backgroundColor: post.Color, width: '50px', height: '50px', borderRadius: '0' }}
+                    ></div>
+                </div>
+                <p>ABV: {post.ABV}</p>
+                <p>IBU: {post.IBU}</p>
+                <p>Size: {post.Size}</p>
                 <div>
                   <HeartIcon className="h-6 w-5 flex-none text-black" aria-hidden="true"  />
                 </div>
-                <Link to={`/brews/${post.PostID}`} className="text-blue-600 mt-2 inline-block">
-                    Read More
-                  </Link>
+                
               </div>
             ))}
+            
             </div>
           </div>
         </div>
@@ -98,4 +104,4 @@ export function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default PostDetail;

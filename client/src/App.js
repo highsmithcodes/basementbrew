@@ -9,6 +9,7 @@ import { Home } from './pages/Home';
 import { Layout } from './components/Layout';
 import { UserProfile } from './pages/updateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PostDetail from './pages/postDetail';
 
 import './App.css';
 import AllPosts from './pages/allPosts';
@@ -44,8 +45,9 @@ function MyRoutes() {
             }
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/brews" element={<Login />} />
+          <Route path="/brews" element={<Dashboard />} />
           <Route path="/all-posts" element={<AllPosts />} />
+          <Route path="/brews/:postId" element={<PostDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>

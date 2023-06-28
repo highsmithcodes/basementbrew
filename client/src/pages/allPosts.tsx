@@ -48,10 +48,15 @@ export function AllPosts() {
       const currentUser = await Auth.currentAuthenticatedUser();
       const userId = currentUser.username;
   
+      if (!post.PostID) {
+        console.error('PostID is missing in the post object:', post);
+        return;
+      }
+  
       const dynamoDB = new DynamoDB.DocumentClient({
         region: 'us-east-1',
         accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
-        secretAccessKey: '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',
+        secretAccessKey: 'arObXIHezPUnH1J42Q9X/61J9n9UWMmN1TNuSCEM', 
       });
   
       const likedByCurrentUser = post.LikedBy && post.LikedBy.includes(userId);
@@ -74,14 +79,12 @@ export function AllPosts() {
         Key: {
           PostID: post.PostID,
         },
-        UpdateExpression: 'SET #like = :likeValue, #likedBy = :likedByValue',
+        UpdateExpression: 'SET #like = :likeValue',
         ExpressionAttributeNames: {
-          '#like': 'Like',
-          '#likedBy': 'LikedBy',
+          '#like': 'Like'
         },
         ExpressionAttributeValues: {
-          ':likeValue': post.Like,
-          ':likedByValue': post.LikedBy,
+          ':likeValue': post.Like
         },
       };
   
@@ -112,41 +115,28 @@ export function AllPosts() {
         <div className="item2 col-span-4">
         <nav aria-label="Tabs">
             <ul className="flex border-b border-gray-100">
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/brews">Your Brews</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/brews">Your Brews</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
-                  <span
-                    className="absolute inset-x-0 -bottom-px h-px w-full bg-pink-600"
-                  ></span>
+              <li className="flex-1 bg-black">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/all-posts">All Brews</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/all-posts">All Brews</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                <a className="relative block p-4" href="">
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/likes">Likes</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/likes">Likes</Link>
                   </div>
-                </a>
               </li>
 
-              <li className="flex-1">
-                
-                <a className="relative block p-4" href="">
-               
+              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
                   <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-gray-900" to="/create-post">Create Post</Link>
+                    <Link className="text-sm font-medium text-white p-4" to="/create-post">Create Post</Link>
                   </div>
-                </a>
               </li>
             </ul>
           </nav>
@@ -165,6 +155,9 @@ export function AllPosts() {
                       onClick={() => handleLike(post)}
                     />
                 </div>
+                <Link to={`/brews/${post.PostID}`} className="text-blue-600 mt-2 inline-block">
+                    Read More
+                  </Link>
               </div>
             ))}
             </div>

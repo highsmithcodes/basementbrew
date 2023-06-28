@@ -45,14 +45,15 @@ export function UserDetails() {
           {userProfile && (
             <div className='flex flex-col justify-start items-start'>
               <div className='flex flex-col justify-start items-start'>
+                <img src="https://placehold.co/200x200" style={{margin: '0 auto 30px auto'}} />
                 <div className='text-xl'>{userProfile.username}</div>
-                <div className='text-xl'>Self Taught Home Brewer</div>
+                <div className='text-xl'>{userProfile.description}</div>
                 <button className="rounded-full my-5 bg-black text-white px-6 "><Link to="/profile">Edit Profile</Link></button>
               </div>
               <ul className='pt-5 pl-0 flex flex-col justify-start items-start'>
                 <li className='flex flex-row justify-start items-start'>
                   <MapPinIcon className="h-6 w-5 flex-none text-black" aria-hidden="true"  />
-                  <div>Denver, CO</div>
+                  <div>{userProfile.location}</div>
                 </li>
                 <li className='flex flex-row justify-start items-start'>
                   <EnvelopeIcon className="h-6 w-5 flex-none text-black" aria-hidden="true"  />

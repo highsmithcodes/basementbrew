@@ -70,9 +70,8 @@ export function CreatePostForm() {
 
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-white shadow rounded">
-      <h2 className="text-xl font-bold mb-4">User Profile Form</h2>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="w-full mx-auto p-4 bg-white shadow rounded">
+      <div className="grid grid-cols-3 gap-3">
         <div className="mb-4">
           <label className="block mb-2">Beer Type</label>
           <input

@@ -1,6 +1,6 @@
 // components/Layout.js
 import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
 import Footer from './Footer';
 
@@ -22,7 +22,8 @@ export function Layout() {
           <div className="flex justify-between items-center">
             <div>
               <Heading level={1} className="text-white text-xl">
-                Basement Brew
+                <Link to="/">
+                Basement Brew</Link>
               </Heading>
             </div>
             <div className="flex space-x-4">              
