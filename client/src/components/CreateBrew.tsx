@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const dynamoDB = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
 
-export function CreatePostForm() {
+export function CreateBrewForm() {
   const [beerType, setBeerType] = useState('');
   const [abv, setAbv] = useState('');
   const [ibu, setIbu] = useState('');
@@ -70,7 +70,7 @@ export function CreatePostForm() {
 
 
   return (
-    <div className="w-full mx-auto p-4 bg-white shadow rounded">
+    <div className="w-full mx-auto p-4 bg-white shadow rounded-3xl">
       <div className="grid grid-cols-3 gap-3">
         <div className="mb-4">
           <label className="block mb-2">Beer Type</label>
@@ -126,7 +126,7 @@ export function CreatePostForm() {
       </div>
       <button
         onClick={handleSaveChanges}
-        className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
       >
         Save Changes
       </button>
@@ -134,4 +134,4 @@ export function CreatePostForm() {
   );
 }
 
-export default CreatePostForm;
+export default CreateBrewForm;

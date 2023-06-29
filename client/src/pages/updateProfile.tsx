@@ -18,40 +18,56 @@ export function UserProfile() {
     try {
       // Get the current authenticated user
       const currentUser = await Auth.currentAuthenticatedUser();
-
+  
       // Extract the user ID from the current authenticated user
       const userId = currentUser.username;
-
+  
       // Initialize the AWS SDK with the credentials
       AWS.config.update({
         region: 'us-east-1',
         accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
         secretAccessKey: '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', 
       });
-
+  
       // Create an instance of the DynamoDB DocumentClient
       const dynamoDB = new AWS.DynamoDB.DocumentClient();
-
+  
       // Update the user profile in DynamoDB
+      const updateExpressionParts: string[] = [];
+      const expressionAttributeValues: { [key: string]: any } = {};
+      const expressionAttributeNames: { [key: string]: string } = {};
+  
+      if (username) {
+        updateExpressionParts.push('#username = :username');
+        expressionAttributeValues[':username'] = username;
+        expressionAttributeNames['#username'] = 'username';
+      }
+  
+      if (description) {
+        updateExpressionParts.push('#description = :description');
+        expressionAttributeValues[':description'] = description;
+        expressionAttributeNames['#description'] = 'description';
+      }
+  
+      if (location) {
+        updateExpressionParts.push('#location = :location');
+        expressionAttributeValues[':location'] = location;
+        expressionAttributeNames['#location'] = 'location';
+      }
+  
+      const updateExpression = `SET ${updateExpressionParts.join(', ')}`;
+  
       const updateParams = {
         TableName: 'basementbrew_users',
         Key: { UserInfo: userId },
-        UpdateExpression: 'SET #username = :username, #description = :description, #location = :location',
-        ExpressionAttributeNames: {
-          '#username': 'username',
-          '#description': 'description',
-          '#location': 'location',
-        },
-        ExpressionAttributeValues: {
-          ':username': username,
-          ':description': description,
-          ':location': location,
-        },
+        UpdateExpression: updateExpression,
+        ExpressionAttributeNames: expressionAttributeNames,
+        ExpressionAttributeValues: expressionAttributeValues,
       };
-
+  
       await dynamoDB.update(updateParams).promise();
       console.log('User profile updated in DynamoDB');
-
+  
       console.log('User profile updated successfully');
       navigate('/dashboard');
     } catch (error) {
@@ -65,13 +81,13 @@ export function UserProfile() {
   };
 
   return (
-    <div className="container mx-auto my-28">
-      <div className="grid-container grid grid-cols-5">
-        <div className="item1 col-span-1 flex flex-col justify-center items-center">
+    <div className="container mx-auto my-16 p-4">
+      <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
+        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center py-5 md:pr-5 lg:pr-5 xl:pr-5">
           <UserDetails />
         </div>
-        <div className="item2 col-span-4">
-          <div className="py-5">
+        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4 rounded-3xl bg-white drop-shadow-md px-8 py-4">
+          <div className="py-0">
             <div>
               <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
               <div className="mb-4">
@@ -101,7 +117,7 @@ export function UserProfile() {
                 />
               </div>
               <button
-                className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
                 onClick={handleSaveChanges}
               >
                 Save Changes

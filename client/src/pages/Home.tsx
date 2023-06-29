@@ -24,7 +24,7 @@ export function Home() {
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
-              className="block w-full rounded bg-amber-500 px-12 py-3 text-sm font-medium text-white shadow hover:bg-white hover:text-black focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
+              className="block w-full rounded bg-amber-500 px-12 py-3 text-sm font-medium text-white shadow hover:bg-white hover:text-black focus:outline-none focus:ring sm:w-auto"
               to="/login"
             >
               Get Started

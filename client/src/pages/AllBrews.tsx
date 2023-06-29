@@ -6,7 +6,7 @@ import UserDetails from '../components/UserDetails';
 import { HeartIcon } from '@heroicons/react/20/solid';
 
 
-export function AllPosts() {
+export function AllBrews() {
   const [userPosts, setUserPosts] = useState<any[]>([]);
   const [userId, setUserId] = useState<string>('');
 
@@ -107,43 +107,16 @@ export function AllPosts() {
 
   return (
     
-    <div className="container mx-auto my-28">
-      <div className="grid-container grid grid-cols-5">
-        <div className="item1 col-span-1 flex flex-col justify-center items-center">
+    <div className="container mx-auto my-16 p-4">
+      <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
+        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center py-5 md:pr-5 lg:pr-5 xl:pr-5">
           <UserDetails />
         </div>
-        <div className="item2 col-span-4">
-        <nav aria-label="Tabs">
-            <ul className="flex border-b border-gray-100">
-              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
-                  <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-white p-4" to="/brews">Your Brews</Link>
-                  </div>
-              </li>
-
-              <li className="flex-1 bg-black">
-                  <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-white p-4" to="/all-posts">All Brews</Link>
-                  </div>
-              </li>
-
-              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
-                  <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-white p-4" to="/likes">Likes</Link>
-                  </div>
-              </li>
-
-              <li className="flex-1 bg-gray-400 hover:bg-black duration-100">
-                  <div className="flex items-center justify-center gap-4">
-                    <Link className="text-sm font-medium text-white p-4" to="/create-post">Create Post</Link>
-                  </div>
-              </li>
-            </ul>
-          </nav>
-          <div className="py-5">
-            <div className="grid grid-cols-2 gap-3">
+        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4">
+          <div className="py-0">
+            <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
             {userPosts.map((post) => (
-              <div key={post.PostID} className="mb-4 rounded-lg border border-black px-8 py-4">
+              <div key={post.PostID} className="w-full  mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4">
                 <h2 className="text-lg font-semibold">{post.BeerType}</h2>
                 <p>{post.Description}</p>
                 <div>
@@ -155,7 +128,7 @@ export function AllPosts() {
                       onClick={() => handleLike(post)}
                     />
                 </div>
-                <Link to={`/brews/${post.PostID}`} className="text-blue-600 mt-2 inline-block">
+                <Link to={`/brews/${post.PostID}`} className="text-black mt-2 inline-block">
                     Read More
                   </Link>
               </div>
@@ -168,4 +141,4 @@ export function AllPosts() {
   );
 }
 
-export default AllPosts;
+export default AllBrews;

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
 import Footer from './Footer';
+import { HomeIcon } from '@heroicons/react/20/solid';
 
 export function Layout() {
   const { route, signOut } = useAuthenticator((context) => [
@@ -23,7 +24,8 @@ export function Layout() {
             <div>
               <Heading level={1} className="text-white text-xl">
                 <Link to="/">
-                Basement Brew</Link>
+                  <HomeIcon className="h-6 w-5 flex-none text-white mr-2" aria-hidden="true"  />
+                </Link>
               </Heading>
             </div>
             <div className="flex space-x-4">              
@@ -34,10 +36,13 @@ export function Layout() {
                 </>
               ) : (
                 <>
-                <a className="text-white" onClick={() => navigate('/dashboard')}>
+                <Link className="text-white" to='/dashboard'>
                 Dashboard
-                </a>
+                </Link>
                 <a className="text-white" onClick={() => logOut()}>Logout</a>
+                <Link to="/profile" className='text-white'>
+                  <img src="https://placehold.co/25x25" style={{margin: '0 auto', borderRadius: '50px'}} />
+                </Link>
                 </>
               )}
             </div>

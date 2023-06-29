@@ -14,12 +14,12 @@ export function DashboardLayout() {
   const message =
     route === 'authenticated' ? 'FIRST PROTECTED ROUTE!' : 'Loading...';
   return (
-    <div className="container mx-auto my-28">
-      <div className="grid-container grid grid-cols-5">
-        <div className="item1 col-span-1 flex flex-col justify-center items-center">
+    <div className="container mx-auto my-16 p-4">
+      <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
+        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center py-5 md:pr-5 lg:pr-5 xl:pr-5">
             <UserDetails />
         </div>
-        <div className="item2 col-span-4">      
+        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4">      
           <nav aria-label="Tabs">
             <ul className="flex border-b border-gray-100">
               <li className="flex-1">

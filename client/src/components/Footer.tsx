@@ -1,3 +1,4 @@
+import { HomeIcon } from '@heroicons/react/20/solid';
 import React from 'react';
 
 const Footer: React.FC = () => {
@@ -10,7 +11,7 @@ const Footer: React.FC = () => {
     <div className="lg:flex lg:items-end lg:justify-between">
       <div>
         <div className="flex justify-center text-teal-600 lg:justify-start">
-         <div className='text-3xl text-white'>Basement Brew</div>
+        <HomeIcon className="h-6 w-5 flex-none text-white mr-2" aria-hidden="true"  />
         </div>
 
         <p
@@ -50,7 +51,7 @@ const Footer: React.FC = () => {
     </div>
 
     <p className="mt-12 text-center text-sm text-white lg:text-right">
-      Copyright &copy; 2022. All rights reserved.
+      Copyright &copy; 2023. All rights reserved.
     </p>
   </div>
 </footer>

@@ -6,7 +6,7 @@ import UserDetails from '../components/UserDetails';
 import { HeartIcon } from '@heroicons/react/20/solid';
 
 
-export function PostDetail() {
+export function YourPosts() {
   const [userPosts, setUserPosts] = useState<any[]>([]);
 
   useEffect(() => {
@@ -48,27 +48,19 @@ export function PostDetail() {
         </div>
         <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4">
           <div className="py-0">
-            <div className="grid grid-cols-1 gap-1">
+            <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
             {userPosts.map((post) => (
-              <div key={post.PostID} className="w-full  mx-2 md:w-full lg:w-full xl:w-full rounded-3xl bg-white drop-shadow-md px-8 py-4">
-                <h2 className="text-lg font-semibold">Beer type: {post.BeerType}</h2>
-                <p>Description: {post.Description}</p>
-                <div className="flex items-center mt-2">
-                    Color: <div
-                    className="w-6 h-6 mr-2 rounded-full ml-2"
-                    style={{ backgroundColor: post.Color, width: '50px', height: '50px', borderRadius: '0' }}
-                    ></div>
-                </div>
-                <p>ABV: {post.ABV}</p>
-                <p>IBU: {post.IBU}</p>
-                <p>Size: {post.Size}</p>
+              <div key={post.PostID} className="w-full  mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 rounded-3xl bg-white drop-shadow-md px-8 py-4">
+                <h2 className="text-lg font-semibold">{post.BeerType}</h2>
+                <p>{post.Description}</p>
                 <div>
                   <HeartIcon className="h-6 w-5 flex-none text-black" aria-hidden="true"  />
                 </div>
-                
+                <Link to={`/brews/${post.PostID}`} className="text-black mt-2 inline-block">
+                    Read More
+                  </Link>
               </div>
             ))}
-            
             </div>
           </div>
         </div>
@@ -77,4 +69,4 @@ export function PostDetail() {
   );
 }
 
-export default PostDetail;
+export default YourPosts;
