@@ -4,6 +4,7 @@ import { DynamoDB } from 'aws-sdk';
 import { Link } from 'react-router-dom';
 import UserDetails from '../components/UserDetails';
 import { HeartIcon } from '@heroicons/react/20/solid';
+import { dynamoDB } from '../components/dynamoDBConfig'; 
 
 
 export function AllBrews() {
@@ -26,11 +27,6 @@ export function AllBrews() {
 
   const fetchUserPosts = async () => {
     try {
-      const dynamoDB = new DynamoDB.DocumentClient({
-        region: 'us-east-1',
-        accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
-        secretAccessKey: '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',
-      });
 
       const params = {
         TableName: 'basementbrew_posts',
@@ -52,12 +48,6 @@ export function AllBrews() {
         console.error('PostID is missing in the post object:', post);
         return;
       }
-  
-      const dynamoDB = new DynamoDB.DocumentClient({
-        region: 'us-east-1',
-        accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
-        secretAccessKey: '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', 
-      });
   
       const likedByCurrentUser = post.LikedBy && post.LikedBy.includes(userId);
   

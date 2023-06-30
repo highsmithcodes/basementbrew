@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const dynamoDB = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
-
 export function CreateBrewForm() {
   const [beerType, setBeerType] = useState('');
   const [abv, setAbv] = useState('');

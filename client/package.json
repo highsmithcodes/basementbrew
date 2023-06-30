@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-color": "^3.0.6",
     "autoprefixer": "^10.4.14",
     "node-sass": "^7.0.3",
     "postcss-import": "^15.1.0",

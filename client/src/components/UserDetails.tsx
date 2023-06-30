@@ -5,6 +5,7 @@ import { Auth } from 'aws-amplify';
 import { DynamoDB } from 'aws-sdk';
 import { MapPinIcon, EnvelopeIcon, LinkIcon, PencilIcon } from '@heroicons/react/20/solid';
 import { Link, useLocation } from 'react-router-dom';
+import { dynamoDB } from './dynamoDBConfig';
 
 export function UserDetails() {
   const [userProfile, setUserProfile] = useState<any>(null); // Specify the type as `any` for now
@@ -15,12 +16,6 @@ export function UserDetails() {
     try {
       const currentUser = await Auth.currentAuthenticatedUser();
       const userId = currentUser.username;
-  
-      const dynamoDB = new DynamoDB.DocumentClient({
-        region: 'us-east-1',
-        accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
-        secretAccessKey: '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',
-      });
   
       const queryParams = {
         TableName: 'basementbrew_users',

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import AWS, { DynamoDB } from 'aws-sdk';
-import awsConfig from '../components/awsConfig';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UserDetails from '../components/UserDetails';
 
-const dynamoDB = new DynamoDB.DocumentClient({ region: 'us-east-1' });
 
 export function UserProfile() {
   const navigate = useNavigate();
