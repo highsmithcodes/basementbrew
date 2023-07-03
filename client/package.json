@@ -59,5 +59,10 @@
     "postcss-import": "^15.1.0",
     "sass": "^1.63.6",
     "tailwindcss": "^3.3.2"
-  }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
 }
