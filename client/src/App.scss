@@ -53,3 +53,9 @@
 .amplify-tabs-item[data-state=active]{
   border-color:black;
 }
+.bg-image {
+  background-image: url('./banner-min.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
