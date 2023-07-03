@@ -2,6 +2,10 @@
     "name": "basementbrew",
     "version": "0.1.0",
     "scripts": {
+        "start": "cd client && npm start",
+        "build": "cd client && npm run build",
+        "test": "cd client && npm test",
+        "eject": "cd client && npm eject",
         "heroku-postbuild": "cd client && npm install && npm run build"
     },
     "dependencies": {}
