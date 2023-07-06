@@ -36,7 +36,7 @@ export function CreateBrewForm() {
   
       // Prepare the new post item
       const postItem = {
-        PostID: Date.now().toString(), // Generate a unique ID for the post
+        PostID: Date.now().toString(),
         PostDetails: userId,
         BeerType: beerType,
         ABV: abv,
@@ -44,7 +44,9 @@ export function CreateBrewForm() {
         Color: color,
         Size: size,
         Description: description,
+        Like: 0, // Initialize the Like property with a default value of 0
       };
+      
   
       // Save the post to the basementbrew_posts table
       const params = {

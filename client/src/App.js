@@ -1,6 +1,7 @@
 //App.js
 import { Authenticator } from '@aws-amplify/ui-react';
-
+import { Provider } from 'react-redux';
+import store from './store/Store';
 import { Dashboard } from './pages/Dashboard';
 import { RequireAuth } from './RequireAuth';
 import { Login } from './pages/Login';
@@ -10,10 +11,10 @@ import { Layout } from './components/Layout';
 import { UserProfile } from './pages/updateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PostDetail from './pages/postDetail';
-
 import './App.css';
 import AllBrews from './pages/AllBrews';
-import YourPosts from './pages/yourPosts';
+import YourBrews from './pages/yourBrews';
+import LikedByUser from './pages/LikedByUser';
 
 function MyRoutes() {
   return (
@@ -48,9 +49,10 @@ function MyRoutes() {
             }
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/brews" element={<YourPosts />} />
+          <Route path="/brews" element={<YourBrews />} />
           <Route path="/all-brews" element={<AllBrews />} />
           <Route path="/brews/:postId" element={<PostDetail />} />
+          <Route path="/liked-brews" element={<LikedByUser />} />
         </Route>
     
       </Routes>    
@@ -61,9 +63,11 @@ function MyRoutes() {
 
 function App() {
   return (
-    <Authenticator.Provider>
-      <MyRoutes />
-    </Authenticator.Provider>
+    <Provider store={store}> 
+      <Authenticator.Provider>
+        <MyRoutes />
+      </Authenticator.Provider>
+    </Provider>
   );
 }
 

@@ -1,9 +1,6 @@
-// components/Protected.js
-import { useAuthenticator, Heading } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { DynamoDB } from 'aws-sdk';
-import { MapPinIcon, EnvelopeIcon, LinkIcon, PencilIcon } from '@heroicons/react/20/solid';
+import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 import { Link, useLocation } from 'react-router-dom';
 import { dynamoDB } from './dynamoDBConfig';
 
@@ -11,7 +8,6 @@ export function UserDetails() {
   const [userProfile, setUserProfile] = useState<any>(null); // Specify the type as `any` for now
   const location = useLocation();
 
-  const { route } = useAuthenticator((context) => [context.route]);
   const fetchUserProfile = async () => {
     try {
       const currentUser = await Auth.currentAuthenticatedUser();
@@ -34,15 +30,14 @@ export function UserDetails() {
   useEffect(() => {
     fetchUserProfile();
   }, []);
-  const message =
-    route === 'authenticated' ? 'FIRST PROTECTED ROUTE!' : 'Loading...';
+
   return (
     <div className='drop-shadow-md bg-white rounded-3xl p-5'>
           {userProfile && (
             <div className='flex flex-col justify-start items-center'>
               <div className='flex flex-col justify-start items-start text-center'>
                 <div className='text-center'>
-                  <img src="https://placehold.co/100x100" style={{margin: '0 auto 20px auto', borderRadius: '50px'}} />
+                  <img src="https://placehold.co/100x100" style={{margin: '0 auto 20px auto', borderRadius: '50px'}} alt="head" />
                   <div className='text-xl'>{userProfile.username}</div>
                   <div className='text-sm'>{userProfile.description}</div>
                 </div>
@@ -71,6 +66,11 @@ export function UserDetails() {
           <li className={`flex-1 text-left rounded-3xl ${location.pathname === '/all-brews' ? 'bg-black text-white' : 'text-black'} hover:bg-black hover:text-white duration-100 mb-2`}>
             <div className="flex items-center justify-start gap-4">
               <Link className="text-sm font-medium p-4" to="/all-brews">All Brews</Link>
+            </div>
+          </li>
+          <li className={`flex-1 text-left rounded-3xl ${location.pathname === '/liked-brews' ? 'bg-black text-white' : 'text-black'} hover:bg-black hover:text-white duration-100 mb-2`}>
+            <div className="flex items-center justify-start gap-4">
+              <Link className="text-sm font-medium p-4" to="/liked-brews">Liked Brews</Link>
             </div>
           </li>
           <li className={`flex-1 text-left rounded-3xl ${location.pathname === '/create-brew' ? 'bg-black text-white' : 'text-black'} hover:bg-black hover:text-white duration-100 mb-2`}>

@@ -1,5 +1,3 @@
-// components/Home.js
-import { Heading } from '@aws-amplify/ui-react';
 import { Link } from 'react-router-dom';
 export function Home() {
   return (
