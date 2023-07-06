@@ -32,10 +32,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "startprod": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "startprod": "serve -s build",
     "css-watch": "tailwindcss -i ./src/App.scss -o ./src/App.css --watch"
   },
   "eslintConfig": {
