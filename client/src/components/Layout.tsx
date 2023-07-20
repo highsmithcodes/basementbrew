@@ -18,6 +18,8 @@ export function Layout() {
 
   return (
     <>
+      {route !== 'authenticated' ? (
+        <>
       <nav className="bg-black py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
@@ -29,7 +31,7 @@ export function Layout() {
               </Heading>
             </div>
             <div className="flex space-x-4">
-              {route !== 'authenticated' ? (
+             
                 <>
                   <Link to="/" className="text-white">
                     Home
@@ -38,8 +40,8 @@ export function Layout() {
                     Login
                   </Link>
                 </>
-              ) : (
-                <>
+        
+                {/* <>
                   <Link to="/dashboard" className="text-white">
                     Dashboard
                   </Link>
@@ -59,13 +61,22 @@ export function Layout() {
                     />
                   </Link>
                 </>
-              )}
+          */}
             </div>
           </div>
         </div>
       </nav>
+      
+      </>
+       ) : (
+        <></>
+       )}
       <Outlet />
-      <Footer/>
+      {route !== 'authenticated' ? (
+        <Footer/>
+        ) : (
+          <></>
+         )}
     </>
   );
 }

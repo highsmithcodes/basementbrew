@@ -17,18 +17,14 @@ export function Login() {
     }
   }, [route, navigate, from]);
   return (
+    <section className="bg-gray-50 hero relative overflow-hidden px-4 py-32 flex lg:h-screen items-center content-center justify-center">
     <View className="auth-wrapper">
       <div className="my-8">
       <Authenticator></Authenticator>
-      <div className="p-5">
-        <div className="text-sm">Test User Credentials:</div>
-        <ul>
-          <li>Username: ezrahighsmith@gmail.com</li>
-          <li>Password: test1234</li>
-        </ul>
-      </div>
+
       </div>
     </View>
+    </section>
   );
 }
 export default Login;

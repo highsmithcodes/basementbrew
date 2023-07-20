@@ -79,13 +79,13 @@ export function UserProfile() {
   };
 
   return (
-    <div className="container mx-auto my-16 p-4">
+    <div className="">
       <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
-        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center py-5 md:pr-5 lg:pr-5 xl:pr-5">
+        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center md:pr-5 lg:pr-5 xl:pr-5">
           <UserDetails />
         </div>
-        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4 rounded-3xl bg-white drop-shadow-md px-8 py-4">
-          <div className="py-0">
+        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4 px-8 py-20">
+          <div className="p-10 bg-white rounded-3xl drop-shadow-md">
             <div>
               <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
               <div className="mb-4">
