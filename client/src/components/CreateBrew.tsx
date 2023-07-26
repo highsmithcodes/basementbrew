@@ -25,11 +25,7 @@ export function CreateBrewForm() {
       const userId = currentUser.username;
   
       // Initialize the AWS SDK with the credentials
-      AWS.config.update({
-        region: 'us-east-1',
-        accessKeyId: 'AKIA2CNAK7BASZTYEZMA',
-        secretAccessKey: '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',
-      });
+ 
   
       // Create an instance of the DynamoDB DocumentClient
       const dynamoDB = new AWS.DynamoDB.DocumentClient();

@@ -29,5 +29,5 @@ describe('UpdateProfile component', () => {
       fireEvent.change(locationInput, { target: { value: 'testLocation' } });
       expect(locationInput.value).toBe('testLocation');
     });
-  
+    // 
 });
