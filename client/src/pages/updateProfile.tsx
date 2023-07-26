@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import UserDetails from '../components/UserDetails';
 
 
-export function UserProfile() {
+export const UserProfile = () => {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState('');
