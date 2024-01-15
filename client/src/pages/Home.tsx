@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 export function Home() {
+
   return (
     <>
       <section className="bg-gray-50 hero relative overflow-hidden">
