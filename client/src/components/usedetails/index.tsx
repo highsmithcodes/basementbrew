@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
-import { dynamoDB } from './dynamoDBConfig';
+import { dynamoDB } from '../../configs/dynamoDBConfig';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthenticator, Heading } from '@aws-amplify/ui-react';
-import Footer from './Footer';
+import Footer from '../footer';
 import { HomeIcon } from '@heroicons/react/20/solid';
 
 export function UserDetails() {

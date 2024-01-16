@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { Link } from 'react-router-dom';
-import UserDetails from '../components/UserDetails';
-import { dynamoDB } from '../components/dynamoDBConfig';
+import UserDetails from '../components/usedetails';
+import { dynamoDB } from '../configs/dynamoDBConfig';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../store/Store';
 import { setUserPosts } from '../store/Store';
-import Like from '../components/Like';
+import Like from '../components/like';
 
 export function Dashboard() {
   const userPosts = useSelector((state: AppState) => state.userPosts);

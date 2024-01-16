@@ -1,5 +1,5 @@
-import UserDetails from './UserDetails';
-import Navigation from './navigation';
+import UserDetails from '../usedetails';
+import Navigation from '../navigation';
 
 export function DashboardLayout() {
 

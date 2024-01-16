@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppState, setUserPosts } from '../store/Store';
 import { Auth } from 'aws-amplify';
 import { Link } from 'react-router-dom';
-import UserDetails from '../components/UserDetails';
-import { dynamoDB } from '../components/dynamoDBConfig';
-import Like from '../components/Like';
+import UserDetails from '../components/usedetails';
+import { dynamoDB } from '../configs/dynamoDBConfig';
+import Like from '../components/like';
 
 export function YourBrews() {
   const userPosts = useSelector((state: AppState) => state.userPosts);

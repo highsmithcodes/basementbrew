@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../store/Store';
-import UserDetails from '../components/UserDetails';
+import UserDetails from '../components/usedetails';
 import { Link } from 'react-router-dom';
-import { dynamoDB } from '../components/dynamoDBConfig';
-import Like from '../components/Like';
+import { dynamoDB } from '../configs/dynamoDBConfig';
+import Like from '../components/like';
 
 const LikedByUser: React.FC = () => {
   const userPosts = useSelector((state: AppState) => state.userPosts);

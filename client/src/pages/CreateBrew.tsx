@@ -1,6 +1,6 @@
 // components/Protected.js
-import UserDetails from '../components/UserDetails';
-import CreateBrewForm from '../components/CreateBrew';
+import UserDetails from '../components/usedetails';
+import CreateBrewForm from '../components/createbrew';
 
 export function CreateBrew() {
 

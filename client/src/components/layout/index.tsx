@@ -1,7 +1,7 @@
 // components/Layout.js
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthenticator, Heading } from '@aws-amplify/ui-react';
-import Footer from './Footer';
+import Footer from '../footer';
 import { HomeIcon } from '@heroicons/react/20/solid';
 
 export function Layout() {

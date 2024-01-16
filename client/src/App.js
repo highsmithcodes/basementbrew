@@ -7,7 +7,7 @@ import { RequireAuth } from './RequireAuth';
 import { Login } from './pages/Login';
 import { CreateBrew } from './pages/CreateBrew';
 import { Home } from './pages/Home';
-import { Layout } from './components/Layout';
+import { Layout } from './components/layout';
 import { UserProfile } from './pages/updateProfile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PostDetail from './pages/postDetail';

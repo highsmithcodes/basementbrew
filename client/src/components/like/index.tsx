@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { HeartIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../store/Store';
-import { setUserPosts } from '../store/Store';
+import { AppState } from '../../store/Store';
+import { setUserPosts } from '../../store/Store';
 import { Auth } from 'aws-amplify';
-import { dynamoDB } from '../components/dynamoDBConfig';
+import { dynamoDB } from '../../configs/dynamoDBConfig';
 
 interface Props {
   post: any;

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../store/Store';
-import UserDetails from '../components/UserDetails';
-import { dynamoDB } from '../components/dynamoDBConfig';
+import UserDetails from '../components/usedetails';
+import { dynamoDB } from '../configs/dynamoDBConfig';
 import { Link } from 'react-router-dom';
-import Like from '../components/Like';
+import Like from '../components/like';
 
 export function AllBrews() {
   const userPosts = useSelector((state: AppState) => state.userPosts);
