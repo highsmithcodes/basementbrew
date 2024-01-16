@@ -1,7 +1,7 @@
 // components/Protected.js
 import UserDetails from '../components/userdetails';
 import CreateBrewForm from '../components/createbrew';
-import DashboardLayout from '../components/dashboard';
+import DashboardLayout from '../components/dashboardlayout';
 
 export function CreateBrew() {
 

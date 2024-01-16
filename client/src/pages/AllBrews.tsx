@@ -1,20 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../store/Store';
 import UserDetails from '../components/userdetails';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 import { Link } from 'react-router-dom';
 import Like from '../components/like';
-import DashboardLayout from '../components/dashboard';
+import DashboardLayout from '../components/dashboardlayout';
+import Card, { CardSkeletonLoader } from '../ui/card';
 
 const AllBrews: React.FC = () => {
 
   const userPosts = useSelector((state: AppState) => state.userPosts);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-
-  useEffect(() => {
-    const fetchUserPosts = async () => {
+  const fetchUserPosts = async () => {
+    setLoading(true);
+  
+    setTimeout(async () => {
       try {
         const params = {
           TableName: 'basementbrew_posts',
@@ -24,29 +27,28 @@ const AllBrews: React.FC = () => {
         dispatch({ type: 'SET_USER_POSTS', payload: response.Items || [] });
       } catch (error) {
         console.error('Error fetching user posts:', error);
+      } finally {
+        setLoading(false);
       }
-    };
-  
+    }, 500);
+  };
+
+
+  useEffect(() => {
     fetchUserPosts();
   }, [dispatch]);
 
   return (
     <DashboardLayout>
+      {loading ? (
+        <CardSkeletonLoader />
+      ) : (
+        <>
         {userPosts.map((post) => (
-          <div
-            key={post.PostID}
-            className="w-full  mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4 mb-4"
-          >
-            <h2 className="text-lg font-semibold">{post.BeerType}</h2>
-            <p>{post.Description}</p>
-            <div>
-              <Like post={post} />
-            </div>
-            <Link to={`/brews/${post.PostID}`} className="text-black mt-2 inline-block">
-              Read More
-            </Link>
-          </div>
+          <Card key={post.PostID} post={post} />
         ))}
+        </>
+      )}
     </DashboardLayout>
   );
 }

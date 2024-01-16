@@ -5,12 +5,15 @@ import { AppState } from '../../store/Store';
 import { setUserPosts } from '../../store/Store';
 import { Auth } from 'aws-amplify';
 import { dynamoDB } from '../../configs/dynamoDBConfig';
+import { useMutation } from '@apollo/client';
+// import { LIKE_POST_MUTATION } from '../../graphql/mutations';
 
 interface Props {
   post: any;
 }
 
 const Like: React.FC<Props> = ({ post }) => {
+  // const [likePostMutation] = useMutation(LIKE_POST_MUTATION);
   const userPosts = useSelector((state: AppState) => state.userPosts);
   const dispatch = useDispatch();
   const [userId, setUserId] = useState('');

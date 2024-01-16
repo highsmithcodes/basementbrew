@@ -37,7 +37,7 @@ const Navigation = () => {
 
             <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
                 <button
-                  className="text-white text-left rounded-3xl mb-6 px-4"
+                  className="text-white text-left rounded-3xl mb-6"
                   onClick={() => {
                     logOut();
                   }}

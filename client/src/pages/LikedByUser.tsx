@@ -5,7 +5,7 @@ import UserDetails from '../components/userdetails';
 import { Link } from 'react-router-dom';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 import Like from '../components/like';
-import DashboardLayout from '../components/dashboard';
+import DashboardLayout from '../components/dashboardlayout';
 
 const LikedByUser: React.FC = () => {
   const userPosts = useSelector((state: AppState) => state.userPosts);
