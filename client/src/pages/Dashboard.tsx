@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { Link } from 'react-router-dom';
-import UserDetails from '../components/usedetails';
+import UserDetails from '../components/userdetails';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../store/Store';

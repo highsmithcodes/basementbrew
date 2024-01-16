@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState, setUserPosts } from '../store/Store';
 import { Auth } from 'aws-amplify';
-import UserDetails from '../components/usedetails';
+import UserDetails from '../components/userdetails';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 
 export function PostDetail() {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import AWS from 'aws-sdk';
 import { useNavigate } from 'react-router-dom';
-import UserDetails from '../components/usedetails';
+import UserDetails from '../components/userdetails';
 
 
 export const UserProfile = () => {
