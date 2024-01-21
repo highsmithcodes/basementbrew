@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 import awsConfig from './configs/awsConfig';
 
-require('dotenv').config();
 Amplify.configure(awsConfig);
 
 const root = ReactDOM.createRoot(
