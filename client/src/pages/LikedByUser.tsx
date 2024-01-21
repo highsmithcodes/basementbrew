@@ -37,7 +37,7 @@ const LikedByUser: React.FC = () => {
           key={post.PostID}
           className="w-full  mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4 mb-4"
       >
-          <h2 className="text-lg font-semibold">{post.BeerType}</h2>
+          <h2 className="text-lg font-semibold">{post?.BeerType}</h2>
           <p>{post.Description}</p>
           <div>
               <Like post={post} />

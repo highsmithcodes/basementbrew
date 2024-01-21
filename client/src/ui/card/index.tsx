@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Like from '../../components/like';
 
+type Post = {
+  PostID: number;
+  BeerType: string;
+  Description: string;
+};
+
 type CardProps = {
-  post: React.ReactNode,
+  post: Post | null;
 };
 
 export const CardSkeletonLoader = () => {
@@ -27,12 +33,12 @@ export const CardSkeletonLoader = () => {
 const Card = ({ post }: CardProps) => {
   return (
     <div className="w-full mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4 mb-4">
-      <h2 className="text-lg font-semibold">{post.BeerType}</h2>
-      <p>{post.Description}</p>
+      <h2 className="text-lg font-semibold">{post?.BeerType}</h2>
+      <p>{post?.Description}</p>
       <div>
         <Like post={post} />
       </div>
-      <Link to={`/brews/${post.PostID}`} className="text-black mt-2 inline-block">
+      <Link to={`/brews/${post?.PostID}`} className="text-black mt-2 inline-block">
         Read More
       </Link>
     </div>

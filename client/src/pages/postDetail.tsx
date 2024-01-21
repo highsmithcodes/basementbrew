@@ -47,7 +47,7 @@ export function PostDetail() {
                   key={post.PostID}
                   className="w-full  mx-2 md:w-full lg:w-full xl:w-full rounded-3xl bg-white drop-shadow-md px-8 py-4"
                 >
-                  <h2 className="text-lg font-semibold">Beer type: {post.BeerType}</h2>
+                  <h2 className="text-lg font-semibold">Beer type: {post?.BeerType}</h2>
                   <p>Description: {post.Description}</p>
                   <div className="flex items-center mt-2">
                     Color:
