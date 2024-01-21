@@ -6,7 +6,7 @@
         "build": "cd client && npm run build",
         "test": "cd client && npm test",
         "eject": "cd client && npm eject",
-        "heroku-postbuild": "cd client && npm install && npm run build"
+        "heroku-build": "cd client && npm install && npm run heroku"
     },
     "dependencies": {}
   }

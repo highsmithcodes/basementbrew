@@ -38,7 +38,8 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "css-watch": "tailwindcss -i ./src/App.scss -o ./src/App.css --watch"
+    "css-watch": "tailwindcss -i ./src/App.scss -o ./src/App.css --watch",
+    "heroku": "npm run build && git add . && git commit -m 'Deploy to Heroku' && heroku remote add heroku https://git.heroku.com/calm-citadel-57835.git && git push heroku main"
   },
   "eslintConfig": {
     "extends": [
