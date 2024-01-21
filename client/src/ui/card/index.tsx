@@ -32,6 +32,7 @@ export const CardSkeletonLoader = () => {
 
 const Card = ({ post }: CardProps) => {
   return (
+    <>
     <div className="w-full mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4 mb-4">
       <h2 className="text-lg font-semibold">{post?.BeerType}</h2>
       <p>{post?.Description}</p>
@@ -42,6 +43,7 @@ const Card = ({ post }: CardProps) => {
         Read More
       </Link>
     </div>
+    </>
   );
 };
 
