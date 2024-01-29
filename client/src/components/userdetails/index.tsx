@@ -90,7 +90,7 @@ export function UserDetails() {
               </li>
               <li className='flex flex-row justify-start items-start'>
                 <EnvelopeIcon className="h-6 w-5 flex-none text-white mr-2" aria-hidden="true"  />
-                <div className='text-white'>email@email.com</div>
+                <div className='text-white'>{userProfile.email}</div>
               </li>
             </ul>
           </div>
