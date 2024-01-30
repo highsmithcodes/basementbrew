@@ -9,13 +9,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <>
       <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row h-full">
-        <div className="w-full md:w-1/4 lg:w-1/4 xl:w-1/4 pt-0 flex-col justify-center items-center py-5 md:pr-5 lg:pr-5 xl:pr-5">
-          <div className='drop-shadow-md bg-black p-5 lg:h-screen'>
-            <UserDetails />
+        <div className="w-full md:w-1/6 lg:w-1/6 xl:w-1/6 pt-0 flex-col justify-center items-center py-5">
+          <div className='drop-shadow-md bg-dark-blue lg:h-screen flex flex-col justify-between'>
             <Navigation />
+            <UserDetails />
           </div>
         </div>
-        <div className="item2 w-full w-3/4 md:w-3/4 lg:w-3/4 lx:w-3/4">
+        <div className="item2 w-full w-5/6 md:w-5/6 lg:w-5/6 lx:w-5/6 bg-custom-white">
           <div className="py-20">
             <div className="flex flex flex-col md:flex-row lg:flex-row xl:flex-row">
               {children}

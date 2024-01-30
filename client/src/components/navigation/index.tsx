@@ -17,27 +17,27 @@ const Navigation = () => {
 
   return (
       <>
-        <nav aria-label="Tabs" className='w-full mt-5 pt-5'>
+        <nav aria-label="Tabs" className='w-full mt-5 p-5'>
           <ul className="flex flex-col w-full justify-start text-left">
-            <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
-              <Link className="text-sm font-medium" to="/brews">Your Brews</Link>
+            <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
+              <Link className="text-sm font-bold" to="/brews">Your Brews</Link>
             </li>
 
-            <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
-              <Link className="text-sm font-medium" to="/all-brews">All Brews</Link>
+            <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
+              <Link className="text-sm font-bold" to="/all-brews">All Brews</Link>
             </li> 
 
-            <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
-              <Link className="text-sm font-medium" to="/liked-brews">Likes</Link>
+            <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
+              <Link className="text-sm font-bold" to="/liked-brews">Likes</Link>
             </li>
 
-            <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
-              <Link className="text-sm font-medium" to="/create-brew">Create Brew</Link>
+            <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
+              <Link className="text-sm font-bold" to="/create-brew">Create Brew</Link>
             </li>
 
-            <li className="text-left rounded-3xl text-white hover:bg-black hover:text-white duration-100 mb-2 p-4">
+            <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
                 <button
-                  className="text-white text-left rounded-3xl mb-6"
+                  className="text-dark-yellow font-bold text-left rounded-3xl mb-6"
                   onClick={() => {
                     logOut();
                   }}

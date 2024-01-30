@@ -75,24 +75,27 @@ export function UserDetails() {
       ) : (
         userProfile && (
           <>
-          <div className='flex flex-col justify-start items-center'>
-            <div className='flex flex-col justify-start items-start text-center'>
-              <div className='text-center'>
-                <img src="https://placehold.co/100x100" style={{margin: '0 auto 20px auto', borderRadius: '50px'}} alt="head" />
-                <div className='text-xl text-white'>{userProfile.username}</div>
-                <div className='text-sm text-white'>{userProfile.description}</div>
+          <div className='flex flex-col justify-start items-center p-5 bg-light-yellow'>
+            <div className='flex justify-start items-start text-center w-full'>
+              <div className='text-center flex flex-row w-full justify-items-start'>
+                <img src="https://placehold.co/70x70" alt="head" className='rounded-lg' />
+                <div className='pl-3 text-left'>
+                  <div className='text-sm font-light text-dark-yellow'>Hey,</div>
+                  <div className='text-sm font-bold text-dark-yellow'>Test Username</div>
+                </div>
+                {/* <div className='text-sm text-dark-yellow'>{userProfile.description}</div> */}
               </div>
             </div>
-            <ul className='pt-2 pl-0 flex flex-col justify-start items-start'>
+            {/* <ul className='pt-2 pl-0 flex flex-col justify-start items-start'>
               <li className='flex flex-row justify-start items-start'>
-                <MapPinIcon className="h-6 w-5 flex-none text-white mr-2" aria-hidden="true"  />
-                <div className='text-white'>{userProfile.location}</div>
+                <MapPinIcon className="h-6 w-5 flex-none text-dark-yellow mr-2" aria-hidden="true"  />
+                <div className='text-dark-yellow'>{userProfile.location}</div>
               </li>
               <li className='flex flex-row justify-start items-start'>
-                <EnvelopeIcon className="h-6 w-5 flex-none text-white mr-2" aria-hidden="true"  />
-                <div className='text-white'>{userProfile.email}</div>
+                <EnvelopeIcon className="h-6 w-5 flex-none text-dark-yellow mr-2" aria-hidden="true"  />
+                <div className='text-dark-yellow'>{userProfile.email}</div>
               </li>
-            </ul>
+            </ul> */}
           </div>
           </>
         )
