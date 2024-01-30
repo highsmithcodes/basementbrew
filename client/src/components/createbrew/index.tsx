@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import AWS from 'aws-sdk';
 import { SketchPicker } from 'react-color';
 import { useNavigate } from 'react-router-dom';
-
+import { dynamoDB } from '../../configs/dynamoDBConfig';
 
 
 export function CreateBrewForm() {
@@ -20,15 +19,10 @@ export function CreateBrewForm() {
     try {
       // Get the current authenticated user
       const currentUser = await Auth.currentAuthenticatedUser();
+      console.log('currentUser', currentUser)
   
       // Extract the user ID from the current authenticated user
       const userId = currentUser.username;
-  
-      // Initialize the AWS SDK with the credentials
- 
-  
-      // Create an instance of the DynamoDB DocumentClient
-      const dynamoDB = new AWS.DynamoDB.DocumentClient();
   
       // Prepare the new post item
       const postItem = {

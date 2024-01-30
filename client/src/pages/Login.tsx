@@ -5,17 +5,37 @@ import { Authenticator, useAuthenticator, View } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import { useNavigate, useLocation } from 'react-router';
+import { dynamoDB } from "../configs/dynamoDBConfig";
+import { Auth, Hub } from "aws-amplify";
 
 export function Login() {
   const { route } = useAuthenticator((context) => [context.route]);
   const location = useLocation();
   const navigate = useNavigate();
   console.log("All Environment Variables:", process.env.AWS_PROJECT_REGION);
-
   let from = location.state?.from?.pathname || '/dashboard';
+
+  const handleSignup = async () => {
+    try {
+      console.log('handleSignupTriggered');
+      const currentUser = await Auth.currentAuthenticatedUser();
+      console.log('handleSignupTriggeredCurrentUser', currentUser);
+      await dynamoDB.put({
+        TableName: 'basementbrew_users',
+        Item: {
+          UserInfo: currentUser.attributes.sub,
+          email: currentUser.attributes.email,
+        },
+      }).promise();
+    } catch (error) {
+      console.log('Error signing up', error);
+    }
+  };
+
   useEffect(() => {
     if (route === 'authenticated') {
       navigate(from, { replace: true });
+      handleSignup();
     }
   }, [route, navigate, from]);
 

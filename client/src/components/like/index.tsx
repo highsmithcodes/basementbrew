@@ -117,9 +117,6 @@ const Like: React.FC<Props> = ({ post }) => {
         />
         <span className="ml-2">{post.Like}</span>
       </div>
-      <div className='flex flex-column content-center'>
-        <p className='text-sm'>By: {username}</p>
-      </div>
   </>
   );
 };

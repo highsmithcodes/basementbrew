@@ -31,6 +31,7 @@ export const CardSkeletonLoader = () => {
 }
 
 const Card = ({ post }: CardProps) => {
+  console.log('post', post)
   return (
     <>
     <div className="w-full mx-2 md:w-1/2 lg:w-1/2 xl:w-1/2 m-0 rounded-3xl bg-white drop-shadow-md px-8 py-4 mb-4">
@@ -38,6 +39,9 @@ const Card = ({ post }: CardProps) => {
       <p>{post?.Description}</p>
       <div>
         <Like post={post} />
+      </div>
+      <div className='flex flex-column content-center'>
+        <p className='text-sm'>By: {post?.PostID}</p>
       </div>
       <Link to={`/brews/${post?.PostID}`} className="text-black mt-2 inline-block">
         Read More
