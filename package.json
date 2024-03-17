@@ -1,13 +1,82 @@
 {
-    "name": "basementbrew",
-    "version": "0.1.0",
-    "scripts": {
-        "start": "cd client && npm run startprod",
-        "build": "cd client && npm run build",
-        "test": "cd client && npm test",
-        "eject": "cd client && npm eject",
-        "heroku-build": "cd client && npm install && npm run heroku"
-    },
-    "dependencies": {}
+  "name": "basementbrew",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@apollo/client": "^3.8.9",
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/node": "^16.18.36",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.6",
+    "@types/react-router-dom": "^5.3.3",
+    "aws-sdk": "^2.1405.0",
+    "graphql": "^16.8.1",
+    "react": "^18.2.0",
+    "react-color": "^2.19.3",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.13.0",
+    "react-scripts": "^5.0.1",
+    "react-scroll": "^1.8.9",
+    "redux": "^4.2.1",
+    "reflect-metadata": "^0.2.1",
+    "serve": "^14.2.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "startprod": "serve -s build",
+    "build": "react-scripts build",
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "css-watch": "tailwindcss -i ./src/App.scss -o ./src/App.css --watch",
+    "heroku": "npm run build && git add . && git commit -m 'Deploy to Heroku' && heroku remote add heroku https://git.heroku.com/calm-citadel-57835.git && git push heroku main"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/react-color": "^3.0.6",
+    "@types/reflect-metadata": "^0.1.0",
+    "autoprefixer": "^10.4.14",
+    "jest": "^29.6.1",
+    "node-sass": "^7.0.3",
+    "postcss-import": "^15.1.0",
+    "sass": "^1.63.6",
+    "tailwindcss": "^3.3.2",
+    "ts-jest": "^29.1.1"
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "./jest.tsconfig.js"
+      }
+    }
   }
-  
+}
