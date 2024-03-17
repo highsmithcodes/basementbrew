@@ -1,5 +1,4 @@
 //App.js
-import { Authenticator } from '@aws-amplify/ui-react';
 import { Provider } from 'react-redux';
 import store from './store/Store';
 import { Dashboard } from './pages/Dashboard';
@@ -15,6 +14,7 @@ import './App.css';
 import AllBrews from './pages/AllBrews';
 import YourBrews from './pages/yourBrews';
 import LikedByUser from './pages/LikedByUser';
+import SupabaseAuth from './configs/supabase'
 
 function MyRoutes() {
   return (
@@ -64,9 +64,9 @@ function MyRoutes() {
 function App() {
   return (
     <Provider store={store}> 
-      <Authenticator.Provider>
+      <SupabaseAuth>
         <MyRoutes />
-      </Authenticator.Provider>
+      </SupabaseAuth>
     </Provider>
   );
 }
