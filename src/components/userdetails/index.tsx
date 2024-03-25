@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Auth } from 'aws-amplify';
 import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 import { dynamoDB } from '../../configs/dynamoDBConfig';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const SkeletonLoading = () => (
   <div className="shadow rounded-md p-4 max-w-sm w-full mx-auto min-h-80">
@@ -26,54 +24,10 @@ const SkeletonLoading = () => (
 );
 
 export function UserDetails() {
-  const [userProfile, setUserProfile] = useState<any>(null); // Specify the type as `any` for now
-  const location = useLocation();
-  const [loading, setLoading] = useState(true);
-
-  const fetchUserProfile = async () => {
-    setLoading(true);
-  
-    setTimeout(async () => {
-      try {
-        const currentUser = await Auth.currentAuthenticatedUser();
-        const userId = currentUser.username;
-    
-        const queryParams = {
-          TableName: 'basementbrew_users',
-          Key: { UserInfo: userId },
-        };
-    
-        const result = await dynamoDB.get(queryParams).promise();
-    
-        if (result.Item) {
-          setUserProfile(result.Item);
-        }
-      } catch (error) {
-        console.error('Error fetching user profile:', error);
-      } finally {
-        setLoading(false);
-      }
-    }, 500);
-  };
-  const { route, signOut } = useAuthenticator((context) => [
-    context.route,
-    context.signOut,
-  ]);
-  const navigate = useNavigate();
-  function logOut() {
-    signOut();
-    navigate('/login');
-  }
-  useEffect(() => {
-    fetchUserProfile();
-  }, []);
 
   return (
     <>
-      {loading ? (
-        <SkeletonLoading />
-      ) : (
-        userProfile && (
+  
           <>
           <div className='flex flex-col justify-start items-center p-5 bg-light-yellow'>
             <div className='flex justify-start items-start text-center w-full'>
@@ -98,8 +52,8 @@ export function UserDetails() {
             </ul> */}
           </div>
           </>
-        )
-      )}
+        
+  
    </>
   );
 }

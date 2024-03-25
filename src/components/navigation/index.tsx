@@ -1,19 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const Navigation = () => {    
 
-  const { route, signOut } = useAuthenticator((context) => [
-    context.route,
-    context.signOut,
-  ]);
 
   const navigate = useNavigate();
 
-  function logOut() {
-    signOut();
-    navigate('/login');
-  }
 
   return (
       <>
@@ -38,9 +29,7 @@ const Navigation = () => {
             <li className="text-left rounded-3xl text-dark-yellow hover:bg-black hover:text-dark-yellow duration-100 mb-2 p-4">
                 <button
                   className="text-dark-yellow font-bold text-left rounded-3xl mb-6"
-                  onClick={() => {
-                    logOut();
-                  }}
+                 
                 >
                   Logout
                 </button>

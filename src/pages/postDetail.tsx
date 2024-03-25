@@ -1,37 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState, setUserPosts } from '../store/Store';
-import { Auth } from 'aws-amplify';
 import UserDetails from '../components/userdetails';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 
 export function PostDetail() {
   const userPosts = useSelector((state: AppState) => state.userPosts);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    fetchUserPosts();
-  }, []);
-
-  const fetchUserPosts = async () => {
-    try {
-      const currentUser = await Auth.currentAuthenticatedUser();
-      const userId = currentUser.username;
-
-      const params = {
-        TableName: 'basementbrew_posts',
-        FilterExpression: 'PostDetails = :userId',
-        ExpressionAttributeValues: {
-          ':userId': userId,
-        },
-      };
-
-      const response = await dynamoDB.scan(params).promise();
-      dispatch(setUserPosts(response.Items || []));
-    } catch (error) {
-      console.error('Error fetching user posts:', error);
-    }
-  };
 
   return (
     <div className="">

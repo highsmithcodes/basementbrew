@@ -2,7 +2,6 @@
 import { Provider } from 'react-redux';
 import store from './store/Store';
 import { Dashboard } from './pages/Dashboard';
-import { RequireAuth } from './RequireAuth';
 import { Login } from './pages/Login';
 import { CreateBrew } from './pages/CreateBrew';
 import { Home } from './pages/Home';
@@ -14,7 +13,7 @@ import './App.css';
 import AllBrews from './pages/AllBrews';
 import YourBrews from './pages/yourBrews';
 import LikedByUser from './pages/LikedByUser';
-import SupabaseAuth from './configs/supabase'
+import AuthWrapper from './configs/supabase';
 
 function MyRoutes() {
   return (
@@ -27,25 +26,19 @@ function MyRoutes() {
           <Route
             path="/dashboard"
             element={
-              <RequireAuth>
                 <Dashboard />
-              </RequireAuth>
             }
           />
           <Route
             path="/create-brew"
             element={
-              <RequireAuth>
                 <CreateBrew />
-              </RequireAuth>
             }
           />
           <Route
             path="/profile"
             element={
-              <RequireAuth>
                 <UserProfile />
-              </RequireAuth>
             }
           />
           <Route path="/login" element={<Login />} />
@@ -64,9 +57,9 @@ function MyRoutes() {
 function App() {
   return (
     <Provider store={store}> 
-      <SupabaseAuth>
+      <AuthWrapper>
         <MyRoutes />
-      </SupabaseAuth>
+      </AuthWrapper>
     </Provider>
   );
 }

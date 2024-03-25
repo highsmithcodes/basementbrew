@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Auth } from 'aws-amplify';
 import { Link } from 'react-router-dom';
 import UserDetails from '../components/userdetails';
 import { dynamoDB } from '../configs/dynamoDBConfig';
