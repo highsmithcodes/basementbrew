@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Auth } from 'aws-amplify';
 import { MapPinIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
-import { dynamoDB } from '../../configs/dynamoDBConfig';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 

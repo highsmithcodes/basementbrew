@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState, setUserPosts } from '../store/Store';
-import { Auth } from 'aws-amplify';
 import { dynamoDB } from '../configs/dynamoDBConfig';
 import DashboardLayout from '../components/dashboardlayout';
 import Card, { CardSkeletonLoader } from '../ui/card';

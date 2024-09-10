@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthenticator } from '@aws-amplify/ui-react';
 
 const Navigation = () => {    
 
