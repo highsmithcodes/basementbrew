@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { useNavigate } from 'react-router-dom';
-import { dynamoDB } from '../../configs/dynamoDBConfig';
+
 
 
 export function CreateBrewForm() {
@@ -14,52 +14,58 @@ export function CreateBrewForm() {
 
   const navigate = useNavigate();
 
-  // const handleSaveChanges = async () => {
-  //   try {
-  //     // Get the current authenticated user
-  //     console.log('currentUser', currentUser)
+  const handleSaveChanges = async () => {
+    try {
+      // Get the current authenticated user
+      const currentUser = await Auth.currentAuthenticatedUser();
   
-  //     // Extract the user ID from the current authenticated user
-  //     const userId = currentUser.username;
+      // Extract the user ID from the current authenticated user
+      const userId = currentUser.username;
   
-  //     // Prepare the new post item
-  //     const postItem = {
-  //       PostID: Date.now().toString(),
-  //       PostDetails: userId,
-  //       BeerType: beerType,
-  //       ABV: abv,
-  //       IBU: ibu,
-  //       Color: color,
-  //       Size: size,
-  //       Description: description,
-  //       Like: 0, // Initialize the Like property with a default value of 0
-  //     };
+      // Initialize the AWS SDK with the credentials
+ 
+  
+      // Create an instance of the DynamoDB DocumentClient
+      const dynamoDB = new AWS.DynamoDB.DocumentClient();
+  
+      // Prepare the new post item
+      const postItem = {
+        PostID: Date.now().toString(),
+        PostDetails: userId,
+        BeerType: beerType,
+        ABV: abv,
+        IBU: ibu,
+        Color: color,
+        Size: size,
+        Description: description,
+        Like: 0, // Initialize the Like property with a default value of 0
+      };
       
   
-  //     // Save the post to the basementbrew_posts table
-  //     const params = {
-  //       TableName: 'basementbrew_posts',
-  //       Item: postItem,
-  //     };
+      // Save the post to the basementbrew_posts table
+      const params = {
+        TableName: 'basementbrew_posts',
+        Item: postItem,
+      };
   
-  //     await dynamoDB.put(params).promise();
-  //     console.log('Post saved successfully');
+      await dynamoDB.put(params).promise();
+      console.log('Post saved successfully');
   
-  //     console.log('User profile updated successfully');
-  //     navigate('/dashboard');
-  //   } catch (error) {
-  //     console.error('Error saving post:', error);
-  //   }
-  // };
+      console.log('User profile updated successfully');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error saving post:', error);
+    }
+  };
 
-  // const handleColorChange = (newColor: any) => {
-  //   setColor(newColor.hex);
-  // };
+  const handleColorChange = (newColor: any) => {
+    setColor(newColor.hex);
+  };
 
 
   return (
     <div className="w-full mx-auto p-4 bg-white shadow rounded-3xl">
-      {/* <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         <div className="mb-4">
           <label className="block mb-2">Beer Type</label>
           <input
@@ -117,7 +123,7 @@ export function CreateBrewForm() {
         className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
       >
         Save Changes
-      </button> */}
+      </button>
     </div>
   );
 }
