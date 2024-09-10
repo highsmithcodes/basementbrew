@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import AWS from 'aws-sdk';
 import { useNavigate } from 'react-router-dom';
 import UserDetails from '../components/userdetails';
 
@@ -11,6 +10,65 @@ export const UserProfile = () => {
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
 
+  const handleSaveChanges = async () => {
+    try {
+      // Get the current authenticated user
+      const currentUser = await Auth.currentAuthenticatedUser();
+  
+      // Extract the user ID from the current authenticated user
+      const userId = currentUser.username;
+  
+
+      // Create an instance of the DynamoDB DocumentClient
+      const dynamoDB = new AWS.DynamoDB.DocumentClient();
+  
+      // Update the user profile in DynamoDB
+      const updateExpressionParts: string[] = [];
+      const expressionAttributeValues: { [key: string]: any } = {};
+      const expressionAttributeNames: { [key: string]: string } = {};
+  
+      if (username) {
+        updateExpressionParts.push('#username = :username');
+        expressionAttributeValues[':username'] = username;
+        expressionAttributeNames['#username'] = 'username';
+      }
+  
+      if (description) {
+        updateExpressionParts.push('#description = :description');
+        expressionAttributeValues[':description'] = description;
+        expressionAttributeNames['#description'] = 'description';
+      }
+  
+      if (location) {
+        updateExpressionParts.push('#location = :location');
+        expressionAttributeValues[':location'] = location;
+        expressionAttributeNames['#location'] = 'location';
+      }
+  
+      const updateExpression = `SET ${updateExpressionParts.join(', ')}`;
+  
+      const updateParams = {
+        TableName: 'basementbrew_users',
+        Key: { UserInfo: userId },
+        UpdateExpression: updateExpression,
+        ExpressionAttributeNames: expressionAttributeNames,
+        ExpressionAttributeValues: expressionAttributeValues,
+      };
+  
+      await dynamoDB.update(updateParams).promise();
+      console.log('User profile updated in DynamoDB');
+  
+      console.log('User profile updated successfully');
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+    }
+  };
+
+  const handleLocationInputChange = (e:any) => {
+    const enteredLocation = e.target.value;
+    setLocation(enteredLocation);
+  };
 
   return (
     <div className="">
@@ -45,10 +103,12 @@ export const UserProfile = () => {
                   className="border border-gray-300 rounded py-2 px-4 w-full"
                   type="text"
                   value={location}
+                  onChange={handleLocationInputChange}
                 />
               </div>
               <button
                 className="bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
+                onClick={handleSaveChanges}
               >
                 Save Changes
               </button>
