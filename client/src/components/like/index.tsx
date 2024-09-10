@@ -3,9 +3,6 @@ import { HeartIcon } from '@heroicons/react/20/solid';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../store/Store';
 import { setUserPosts } from '../../store/Store';
-import { Auth } from 'aws-amplify';
-import { dynamoDB } from '../../configs/dynamoDBConfig';
-import { useMutation } from '@apollo/client';
 // import { LIKE_POST_MUTATION } from '../../graphql/mutations';
 
 interface Props {

@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Auth } from 'aws-amplify';
-import AWS from 'aws-sdk';
+import { useState } from 'react';
 import { SketchPicker } from 'react-color';
 import { useNavigate } from 'react-router-dom';
 
